@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --travertine: #f4ecdf;
+  --terracotta: #c9502b;
+  --olive: #4b5a2b;
+  --espresso: #1e1611;
+  --butter: #f1c65b;
+  --rosato: #eab9a1;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --travertine: #17110d;
+  --espresso: #f4ecdf;
+  --rosato: #5a2f20;
 }
-
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --travertine: #17110d;
+    --espresso: #f4ecdf;
+    --rosato: #5a2f20;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --color-travertine: var(--travertine);
+  --color-terracotta: var(--terracotta);
+  --color-olive: var(--olive);
+  --color-espresso: var(--espresso);
+  --color-butter: var(--butter);
+  --color-rosato: var(--rosato);
+  --font-display: var(--font-fraunces), serif;
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  --font-mono: var(--font-dmmono), monospace;
 }
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--travertine);
+  color: var(--espresso);
+  font-family: var(--font-sans);
+}
+/* paper grain */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; border-radius: 8px; }
+section[id] { scroll-margin-top: 6rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 30s linear infinite; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
