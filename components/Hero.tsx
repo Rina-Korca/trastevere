@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Phone, UtensilsCrossed } from "lucide-react";
+import Magnetic from "./Magnetic";
 import StatusChip from "./StatusChip";
 import { business, hasPhone } from "@/lib/business-info";
 
@@ -20,12 +21,12 @@ export default function Hero() {
         </h1>
         <p className="mt-4 max-w-xl font-display text-2xl italic text-terracotta md:text-4xl">Ein Stück Rom – für Freunde am Tisch.</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-4 font-medium text-travertine transition hover:scale-105 hover:bg-espresso">
+          <Magnetic><a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-4 font-medium text-travertine transition hover:scale-105 hover:bg-espresso">
             <Phone size={18} /> Anrufen
-          </a>
-          <a href="#speisekarte" className="inline-flex items-center gap-2 rounded-full border-2 border-espresso px-7 py-4 font-medium transition hover:scale-105 hover:bg-espresso hover:text-travertine">
+          </a></Magnetic>
+          <Magnetic><a href="#speisekarte" className="inline-flex items-center gap-2 rounded-full border-2 border-espresso px-7 py-4 font-medium transition hover:scale-105 hover:bg-espresso hover:text-travertine">
             <UtensilsCrossed size={18} /> Speisekarte
-          </a>
+          </a></Magnetic>
           <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full px-5 py-4 font-medium underline underline-offset-4">Route planen</a>
         </div>
         <ul className="mt-8 flex flex-wrap gap-2">

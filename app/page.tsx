@@ -7,6 +7,13 @@ import Mood from "@/components/Mood";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Visit from "@/components/Visit";
+import Bento from "@/components/Bento";
+import Sharing from "@/components/Sharing";
+import DayNight from "@/components/DayNight";
+import Takeaway from "@/components/Takeaway";
+import Drinks from "@/components/Drinks";
+import Cursor from "@/components/Cursor";
+import Intro from "@/components/Intro";
 import Footer from "@/components/Footer";
 import { business } from "@/lib/business-info";
 
@@ -17,9 +24,9 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <Navbar />
+      <Intro /><Cursor /><Navbar />
       <main>
-        <Hero /><Marquee /><Story /><Menu /><Mood /><Reviews /><FAQ /><Visit />
+        <Hero /><Marquee /><Story /><Menu /><Bento /><Sharing /><DayNight /><Mood /><Takeaway /><Drinks /><Reviews /><FAQ /><Visit />
       </main>
       <Footer />
     </>

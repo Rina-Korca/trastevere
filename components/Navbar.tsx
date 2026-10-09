@@ -8,7 +8,7 @@ const links = [
   { id: "start", label: "Start" },
   { id: "geschichte", label: "Amore" },
   { id: "speisekarte", label: "Speisekarte" },
-  { id: "stimmung", label: "Stimmung" },
+  { id: "teilen", label: "Teilen" },
   { id: "besuch", label: "Besuch" },
 ];
 
