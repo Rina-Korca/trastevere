@@ -14,7 +14,8 @@ export default function Reviews() {
             <p className="label mt-2 text-ink/60">{business.rating ? `${business.rating.count} Google-Bewertungen` : "Bewertung aus Google Maps ergänzen"}</p>
           </Reveal>
         </div>
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
+        <p className="mt-8 max-w-2xl text-lg text-ink/70">Was Gäste sagen, zählt mehr als jedes Eigenlob. Hier erscheinen echte Bewertungen aus Google, sobald sie eingetragen sind. Bis dahin zeigen die Karten nur Beispiele.</p>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {[1, 2, 3].map(i => (
             <Reveal key={i} delay={i * 0.1}>
               <figure className="flex h-full flex-col justify-between rounded-2xl border border-ink/15 bg-paper p-8">

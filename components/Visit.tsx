@@ -12,7 +12,8 @@ export default function Visit() {
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Besuch</p>
         <Headline className="text-6xl md:text-9xl" lines={["Komm", <em key="a" className="text-clay">vorbei.</em>]} />
-        <div className="mt-16 grid gap-12 md:grid-cols-2">
+        <p className="mt-8 max-w-2xl text-lg text-ink/70">Wir freuen uns auf dich. Alle Infos zum Weg und zu den Öffnungszeiten findest du hier. Für Fragen, Wünsche oder Bestellungen zum Mitnehmen ruf uns einfach an – ein kurzes Gespräch genügt.</p>
+        <div className="mt-10 grid gap-12 md:grid-cols-2">
           <Reveal>
             <p className="flex items-start gap-3 text-lg"><MapPin className="mt-1 shrink-0 text-clay" size={18} />{business.address.street}, {business.address.zip} {business.address.city}</p>
             <p className="mt-3 flex items-center gap-3 text-lg"><Phone className="shrink-0 text-clay" size={18} />{business.phone.display}</p>

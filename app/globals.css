@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0f0b09;
-  --coal: #1a1411;
-  --bone: #f3ece1;
-  --paper: #e9dfd0;
-  --clay: #c0653b;
-  --gold: #d2b17a;
-  --moss: #6f7b4f;
+  --ink: #130c0a;
+  --coal: #241613;
+  --bone: #f7f0e4;
+  --paper: #eddfc9;
+  --clay: #cf5a30;
+  --gold: #e3bd72;
+  --moss: #7d8b55;
+  --wine: #5a1a1d;
 }
 
 @theme inline {
@@ -18,6 +19,7 @@
   --color-clay: var(--clay);
   --color-gold: var(--gold);
   --color-moss: var(--moss);
+  --color-wine: var(--wine);
   --font-display: var(--font-instrument), "Times New Roman", serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-dmmono), monospace;

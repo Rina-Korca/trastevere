@@ -23,9 +23,10 @@ export default function Menu() {
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Speisekarte</p>
         <Headline className="text-6xl md:text-9xl" lines={["Zum Teilen,", <em key="a" className="text-clay">zum Genießen.</em>]} />
+        <p className="mt-8 max-w-2xl text-lg text-ink/70">Italienische Klassiker, mit Liebe zubereitet: von knusprigen Antipasti über Pizza und Pasta bis zum süßen Abschluss. Stöbere durch die Kategorien, suche gezielt oder filtere vegetarische Gerichte. Die Gerichte unten sind Beispiele und werden durch die echte Karte ersetzt.</p>
         <p className="label mt-6 inline-block rounded-full border border-clay/50 px-4 py-2 text-clay">Beispiel-Gerichte · bitte durch die echte Karte ersetzen</p>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-12">
+        <div className="mt-10 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-3">
             <div className="md:sticky md:top-28">
               <ul role="tablist" className="flex gap-2 overflow-x-auto md:flex-col md:gap-0">

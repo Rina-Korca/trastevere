@@ -6,10 +6,10 @@ import { useState } from "react";
 
 // Generic copy – describes a typical Italian evening, not specific dishes or claims.
 const acts = [
-  { n: "I", t: "Aperitivo", d: "Ein kühles Glas, ein paar Oliven, und der Abend darf beginnen.", img: "/images/friends.jpg" },
-  { n: "II", t: "Antipasti", d: "Kleine Teller, die in die Mitte wandern und von Hand zu Hand gehen.", img: "/images/dinner.jpg" },
-  { n: "III", t: "Pizza & Pasta", d: "Das Herzstück: ofenwarm oder frisch gekocht, zum Teilen oder ganz für dich.", img: "/images/pizza-1.jpg" },
-  { n: "IV", t: "Dolci", d: "Ein süßer Schlusspunkt – und noch ein Espresso, bevor es nach Hause geht.", img: "/images/dolci.jpg" },
+  { n: "I", t: "Aperitivo", d: "Ein kühles Glas, ein paar Oliven und die ersten Gespräche. Ankommen, durchatmen, und der Abend darf beginnen.", img: "/images/friends.jpg" },
+  { n: "II", t: "Antipasti", d: "Kleine Teller, die in die Mitte wandern und von Hand zu Hand gehen. Jeder probiert, jeder darf nachlegen.", img: "/images/dinner.jpg" },
+  { n: "III", t: "Pizza & Pasta", d: "Das Herzstück des Abends: ofenwarm oder frisch gekocht, zum Teilen oder ganz für dich allein. Hier wird es satt und glücklich.", img: "/images/pizza-1.jpg" },
+  { n: "IV", t: "Dolci", d: "Ein süßer Schlusspunkt und noch ein Espresso, bevor es nach Hause geht. Manchmal auch noch ein Löffel mehr.", img: "/images/dolci.jpg" },
 ];
 
 export default function Evening() {

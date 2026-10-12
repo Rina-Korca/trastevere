@@ -15,11 +15,12 @@ export default function PhotoStack() {
   const next = () => setOrder(o => [...o.slice(1), o[0]]);
   return (
     <section className="overflow-hidden bg-bone px-5 py-32 md:px-10 md:py-44">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 md:gap-12 md:grid-cols-2">
         <div>
           <p className="label mb-6 text-clay">— Eindrücke</p>
           <Headline className="text-6xl md:text-9xl" lines={["Zieh", <em key="a" className="text-clay">mich weg.</em>]} />
-          <p className="label mt-8 text-ink/50">Platzhalter-Fotos · ziehen, wischen oder klicken</p>
+          <p className="mt-8 max-w-md text-lg text-ink/70">Ein paar Eindrücke zum Durchblättern: Zieh die Karten zur Seite, wische oder klicke dich durch Tisch, Teller und Gläser.</p>
+          <p className="label mt-6 text-ink/50">Platzhalter-Fotos · ziehen, wischen oder klicken</p>
           <button onClick={next} className="label mt-6 inline-flex items-center gap-2 rounded-full border border-ink px-6 py-3 transition hover:bg-ink hover:text-bone">Nächstes Foto <ArrowRight size={14} /></button>
         </div>
         <div className="relative mx-auto h-[28rem] w-72 md:h-[34rem] md:w-96" aria-roledescription="Foto-Stapel" aria-live="polite">

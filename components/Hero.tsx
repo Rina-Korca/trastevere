@@ -26,6 +26,7 @@ export default function Hero() {
             <motion.span className="block" initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>{business.name}</motion.span>
           </span>
         </h1>
+        <p className="mt-6 hidden max-w-xl text-bone/75 md:block">Italienische Küche, Pizza, Pasta und Wein in gemütlicher Atmosphäre. Komm vorbei, teile deinen Teller mit Freunden und lass den Alltag draußen.</p>
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.6, duration: 1 }} className="display max-w-md text-3xl italic text-bone/90 md:text-4xl">
             Ein Stück Rom – für Freunde am Tisch.

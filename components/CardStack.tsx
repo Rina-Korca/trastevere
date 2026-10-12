@@ -30,7 +30,7 @@ export default function CardStack() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   return (
     <section ref={ref} className="bg-paper py-20">
-      <p className="label px-5 pb-10 text-clay md:px-10">— Klassiker (Beispiele)</p>
+      <div className="px-5 pb-10 md:px-10"><p className="label text-clay">— Klassiker (Beispiele)</p><p className="mt-4 max-w-2xl text-lg text-ink/70">Drei Dinge, die zu einem italienischen Abend gehören: Pizza aus dem Ofen, Pasta, die satt und glücklich macht, und ein süßer Abschluss. Die Karten zeigen Beispiele; die echten Gerichte stehen in der Speisekarte.</p></div>
       {cards.map((c, i) => <Item key={c.n} c={c} i={i} p={scrollYProgress} />)}
     </section>
   );

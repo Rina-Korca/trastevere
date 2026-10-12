@@ -8,6 +8,8 @@ const faq = [
   ["Gibt es vegetarische Gerichte?", "Bitte rufen Sie uns an – wir beraten Sie gern."],
   ["Kann ich etwas zum Mitnehmen bestellen?", "Bitte rufen Sie uns an."],
   ["Gibt es Lieferung?", "Bitte rufen Sie uns an."],
+  ["Ist das Restaurant für Gruppen geeignet?", "Bitte rufen Sie uns an – wir besprechen gern, was möglich ist."],
+  ["Welche Zahlungsarten gibt es?", "Bitte rufen Sie uns an."],
   ["Wo finde ich euch?", "Adresse und Route finden Sie im Abschnitt „Besuch“."],
   ["Parkplätze, Zahlung, Allergene, Gruppen?", "Bitte rufen Sie uns an."],
 ];
@@ -15,7 +17,7 @@ export default function FAQ() {
   const [o, setO] = useState<number | null>(0);
   return (
     <section className="bg-paper px-5 py-32 md:px-10 md:py-44">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
+      <div className="mx-auto grid max-w-7xl gap-8 md:gap-12 md:grid-cols-12">
         <div className="md:col-span-5"><p className="label mb-6 text-clay">— FAQ</p><Headline className="text-6xl md:text-8xl" lines={["Gut", <em key="a" className="text-clay">zu wissen.</em>]} />
           <p className="label mt-6 text-clay">Antworten sind Platzhalter – bitte bestätigen.</p></div>
         <div className="md:col-span-7">

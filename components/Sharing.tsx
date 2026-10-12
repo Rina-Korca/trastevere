@@ -11,7 +11,7 @@ export default function Sharing() {
   const [h, setH] = useState(0);
   return (
     <section id="teilen" className="bg-paper px-5 py-32 md:px-10 md:py-44">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 md:gap-12 md:grid-cols-2">
         <div>
           <p className="label mb-6 text-clay">— Für Freunde</p>
           <Headline className="text-6xl md:text-9xl" lines={["Eine Mitte,", <em key="a" className="text-clay">viele Hände.</em>]} />

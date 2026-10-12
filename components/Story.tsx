@@ -4,9 +4,9 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const pillars = [
-  { n: "01", t: "Teilen", d: "Platten und Pizza kommen in die Mitte – bedient wird sich gemeinsam." },
-  { n: "02", t: "Zusammen", d: "Ein Tisch, viele Geschichten. Hier darf es lauter und länger werden." },
-  { n: "03", t: "Genießen", d: "Italienische Gastfreundschaft: ohne Eile, mit offenen Armen." },
+  { n: "01", t: "Teilen", d: "Platten und Pizza kommen in die Mitte, und bedient wird sich gemeinsam. Probieren, tauschen, nachnehmen: So schmeckt jeder Bissen ein bisschen besser." },
+  { n: "02", t: "Zusammen", d: "Ein Tisch, viele Geschichten. Hier darf gelacht, erzählt und gefeiert werden – und der Abend darf ruhig länger dauern als geplant." },
+  { n: "03", t: "Genießen", d: "Italienische Gastfreundschaft heißt: ohne Eile, mit offenen Armen und dem Gefühl, ein bisschen wie zu Hause zu sein." },
 ];
 
 export default function Story() {
@@ -33,7 +33,7 @@ export default function Story() {
           </motion.div>
         </div>
       </section>
-      <section className="bg-ink px-5 pb-32 text-bone md:px-10 md:pb-44">
+      <section className="bg-ink px-5 pb-16 text-bone md:px-10 md:pb-44">
         <div className="mx-auto grid max-w-7xl border-t border-bone/20 md:grid-cols-3">
           {pillars.map((p, i) => (
             <motion.div key={p.n} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.9, delay: i * 0.12 }}

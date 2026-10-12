@@ -20,7 +20,8 @@ export default function Mood() {
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Wonach ist dir?</p>
         <Headline className="text-6xl md:text-9xl" lines={["Was passt zu", <em key="a" className="text-clay">deiner Laune?</em>]} />
-        <div className="mt-14 grid gap-10 md:grid-cols-2">
+        <p className="mt-8 max-w-2xl text-lg text-ink/70">Nicht jeder Abend ist gleich. Mal hast du Hunger auf etwas Großes, mal willst du dir nur etwas Leichtes gönnen oder mit Freunden anstoßen. Wähle deine Stimmung – wir zeigen dir, was dazu passt.</p>
+        <div className="mt-8 grid gap-10 md:grid-cols-2">
           <ul className="flex flex-wrap gap-2 self-start md:flex-col md:gap-0">
             {(Object.keys(moods) as K[]).map(k => (
               <li key={k}><button onClick={() => setM(k)} aria-pressed={k === m}

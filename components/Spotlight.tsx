@@ -29,10 +29,11 @@ function Card({ label, note, Icon, i }: { label: string; note: string; Icon: typ
 
 export default function Spotlight() {
   return (
-    <section className="bg-ink px-5 pb-32 text-bone md:px-10 md:pb-44">
+    <section className="bg-wine px-5 pt-16 pb-16 text-bone md:px-10 md:pb-44">
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-gold">— Bei uns</p>
-        <Headline className="mb-14 text-5xl md:text-8xl" lines={["Alles, was", <em key="a" className="text-gold">dazugehört.</em>]} />
+        <Headline className="mb-8 text-5xl md:text-8xl" lines={["Alles, was", <em key="a" className="text-gold">dazugehört.</em>]} />
+        <p className="mb-10 max-w-2xl text-lg text-bone/70">Ob zu zweit, mit der ganzen Clique oder spontan nach Feierabend: Bei uns findest du, was einen guten Restaurantbesuch ausmacht. Gemütliche Atmosphäre, italienische Küche und Menschen, die sich auf deinen Besuch freuen.</p>
         <div className="grid gap-4 md:grid-cols-3">
           {business.services.slice(0, 5).map((s, i) => <Card key={s} label={s} note={notes[i]} Icon={icons[i]} i={i} />)}
         </div>
