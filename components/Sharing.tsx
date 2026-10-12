@@ -1,26 +1,34 @@
 "use client";
 import { useState } from "react";
-import Reveal from "./Reveal";
-const items = [
-  { n: "Bruschetta", e: "🍞", x: 50, y: 14 }, { n: "Oliven", e: "🫒", x: 82, y: 36 },
-  { n: "Mozzarella", e: "🧀", x: 74, y: 76 }, { n: "Tomaten", e: "🍅", x: 26, y: 76 },
-  { n: "Salumi", e: "🥓", x: 18, y: 36 }, { n: "Basilikum", e: "🌿", x: 50, y: 50 },
+import Image from "next/image";
+import Reveal, { Headline } from "./Reveal";
+
+// Hotspots on the placeholder photo – EXAMPLE items, adjust once real photo is in place.
+const spots = [
+  { n: "Pizza zum Teilen", x: 40, y: 48 }, { n: "Frische Kräuter", x: 78, y: 70 }, { n: "Tomaten", x: 20, y: 22 },
 ];
 export default function Sharing() {
-  const [h, setH] = useState<string | null>(null);
+  const [h, setH] = useState(0);
   return (
-    <section id="teilen" className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-28 md:grid-cols-2">
-      <Reveal>
-        <h2 className="font-display text-5xl font-semibold md:text-7xl">Für <span className="italic text-terracotta">Freunde</span></h2>
-        <p className="mt-5 max-w-md text-lg text-espresso/75">Antipasti-Platten und Pizza zum Teilen: eine Mitte, viele Hände. Beispiel-Zutaten – die echte Auswahl bitte ergänzen.</p>
-        <p className="mt-6 min-h-8 font-display text-3xl italic text-olive" aria-live="polite">{h ?? "Fahr über die Platte →"}</p>
-      </Reveal>
-      <div className="relative mx-auto aspect-square w-full max-w-md rounded-full border-[14px] border-rosato bg-travertine shadow-2xl">
-        <div className="absolute inset-6 rounded-full bg-butter/50" />
-        {items.map(i => (
-          <button key={i.n} onMouseEnter={() => setH(i.n)} onFocus={() => setH(i.n)} onMouseLeave={() => setH(null)} aria-label={i.n}
-            style={{ left: `${i.x}%`, top: `${i.y}%` }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 text-5xl transition hover:scale-125 hover:-rotate-12 md:text-6xl">{i.e}</button>))}
+    <section id="teilen" className="bg-paper px-5 py-32 md:px-10 md:py-44">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
+        <div>
+          <p className="label mb-6 text-clay">— Für Freunde</p>
+          <Headline className="text-6xl md:text-9xl" lines={["Eine Mitte,", <em key="a" className="text-clay">viele Hände.</em>]} />
+          <Reveal delay={0.2}><p className="mt-8 max-w-md text-lg text-ink/70">Antipasti-Platten und Pizza zum Teilen: Hier wird nicht abgezählt, sondern weitergereicht. Beispieltext – die echte Auswahl bitte ergänzen.</p>
+            <p className="display mt-8 min-h-12 text-4xl italic" aria-live="polite">{spots[h].n}</p></Reveal>
+        </div>
+        <Reveal>
+          <div className="relative aspect-square overflow-hidden rounded-full">
+            <Image src="/images/pizza-2.jpg" alt="Pizza zum Teilen" fill sizes="(min-width:768px) 45vw, 90vw" className="object-cover" />
+            {spots.map((s, i) => (
+              <button key={s.n} aria-label={s.n} onMouseEnter={() => setH(i)} onFocus={() => setH(i)} style={{ left: `${s.x}%`, top: `${s.y}%` }}
+                className="absolute -translate-x-1/2 -translate-y-1/2">
+                <span className={`relative grid h-9 w-9 place-items-center rounded-full border border-bone bg-ink/50 backdrop-blur transition ${h === i ? "scale-125 bg-clay" : ""}`}>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bone/40" /><span className="label relative text-bone">{i + 1}</span></span>
+              </button>))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

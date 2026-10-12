@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Fraunces, Bricolage_Grotesque, DM_Mono } from "next/font/google";
+import { Instrument_Serif, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { business } from "@/lib/business-info";
 
-const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], style: ["normal", "italic"], axes: ["SOFT", "opsz"] });
-const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"] });
+const instrument = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const dmmono = DM_Mono({ variable: "--font-dmmono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${fraunces.variable} ${bricolage.variable} ${dmmono.variable}`}>
+    <html lang="de" className={`${instrument.variable} ${inter.variable} ${dmmono.variable}`}>
       <body>{children}</body>
     </html>
   );

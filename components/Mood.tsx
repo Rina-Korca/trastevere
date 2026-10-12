@@ -1,35 +1,41 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import Reveal from "./Reveal";
+import { Headline } from "./Reveal";
 
-const moods: Record<string, { pick: string; note: string; emoji: string }> = {
-  Hungrig: { pick: "Pasta", note: "Ein großer Teller, der satt und glücklich macht.", emoji: "🍝" },
-  Gemütlich: { pick: "Pizza zum Teilen", note: "Ofenwarm, in der Mitte vom Tisch.", emoji: "🍕" },
-  Leicht: { pick: "Antipasti", note: "Kleine Teller, frisch und bunt.", emoji: "🍅" },
-  Feierlaune: { pick: "Aperitivo & Vino", note: "Erst anstoßen, dann bestellen.", emoji: "🥂" },
-  Vegetarisch: { pick: "Vegetarische Klassiker", note: "Gemüse, Käse, Kräuter.", emoji: "🌿" },
-};
+const moods = {
+  Hungrig: { pick: "Pasta", note: "Ein großer Teller, der satt und glücklich macht.", img: "/images/pasta.jpg" },
+  Gemütlich: { pick: "Pizza zum Teilen", note: "Ofenwarm, in der Mitte vom Tisch.", img: "/images/pizza-1.jpg" },
+  Leicht: { pick: "Antipasti", note: "Kleine Teller, frisch und bunt.", img: "/images/dinner.jpg" },
+  Feierlaune: { pick: "Aperitivo & Vino", note: "Erst anstoßen, dann bestellen.", img: "/images/friends.jpg" },
+  Süß: { pick: "Dolci", note: "Das letzte Kapitel des Abends.", img: "/images/dolci.jpg" },
+} as const;
+type K = keyof typeof moods;
 
 export default function Mood() {
-  const [m, setM] = useState("Gemütlich");
+  const [m, setM] = useState<K>("Gemütlich");
   return (
-    <section id="stimmung" className="bg-butter px-5 py-28 text-espresso">
-      <div className="mx-auto max-w-4xl text-center">
-        <Reveal><h2 className="font-display text-5xl font-semibold md:text-7xl">Was passt zu deiner <span className="italic text-terracotta">Laune?</span></h2></Reveal>
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {Object.keys(moods).map(k => (
-            <button key={k} aria-pressed={k === m} onClick={() => setM(k)} className={`rounded-full border-2 border-espresso px-5 py-2 font-medium transition ${k === m ? "bg-espresso text-travertine" : "hover:bg-espresso/10"}`}>{k}</button>
-          ))}
+    <section id="stimmung" className="bg-bone px-5 py-32 md:px-10 md:py-44">
+      <div className="mx-auto max-w-7xl">
+        <p className="label mb-6 text-clay">— Wonach ist dir?</p>
+        <Headline className="text-6xl md:text-9xl" lines={["Was passt zu", <em key="a" className="text-clay">deiner Laune?</em>]} />
+        <div className="mt-14 grid gap-10 md:grid-cols-2">
+          <ul className="flex flex-wrap gap-2 self-start md:flex-col md:gap-0">
+            {(Object.keys(moods) as K[]).map(k => (
+              <li key={k}><button onClick={() => setM(k)} aria-pressed={k === m}
+                className={`display border-b border-transparent text-4xl transition md:py-1 md:text-7xl ${k === m ? "italic text-clay" : "text-ink/25 hover:text-ink/60"}`}>{k}</button></li>))}
+          </ul>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink">
+            <AnimatePresence mode="popLayout">
+              <motion.div key={m} initial={{ clipPath: "inset(100% 0 0 0)" }} animate={{ clipPath: "inset(0% 0 0 0)" }} exit={{ opacity: 0 }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }} className="absolute inset-0">
+                <Image src={moods[m].img} alt={moods[m].pick} fill sizes="50vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
+                <div className="absolute bottom-0 p-6 text-bone"><p className="label text-gold">Unser Vorschlag</p><p className="display text-5xl">{moods[m].pick}</p><p className="mt-1 text-bone/80">{moods[m].note}</p></div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div key={m} initial={{ rotateX: 90, opacity: 0 }} animate={{ rotateX: 0, opacity: 1 }} exit={{ rotateX: -90, opacity: 0 }} transition={{ duration: 0.4 }}
-            className="mx-auto mt-10 max-w-md rounded-3xl bg-travertine p-10 shadow-xl">
-            <div className="text-7xl" aria-hidden>{moods[m].emoji}</div>
-            <p className="mt-4 font-display text-4xl font-semibold">{moods[m].pick}</p>
-            <p className="mt-2 text-espresso/70">{moods[m].note}</p>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );

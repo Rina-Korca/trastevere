@@ -1,11 +1,11 @@
 import { business } from "@/lib/business-info";
 export default function Footer() {
   return (
-    <footer className="overflow-hidden bg-terracotta px-5 pb-10 pt-20 text-travertine">
-      <p className="font-display text-[clamp(3rem,13vw,11rem)] font-semibold leading-none [-webkit-text-stroke:2px_var(--travertine)] text-transparent">Grazie, amici!</p>
-      <div className="mt-10 flex flex-wrap justify-between gap-6 text-sm">
-        <address className="not-italic">{business.name}<br />{business.address.street}<br />{business.address.zip} {business.address.city}<br />{business.phone.display}</address>
-        <nav className="flex gap-4" aria-label="Footer"><a href="#start">Nach oben ↑</a><a href="#">Impressum</a><a href="#">Datenschutz</a></nav>
+    <footer className="overflow-hidden bg-ink px-5 pb-8 pt-24 text-bone md:px-10">
+      <p className="display text-center text-[clamp(4rem,19vw,22rem)] leading-[.8]"><span className="outline-text">Grazie,</span> <em>amici!</em></p>
+      <div className="label mt-16 flex flex-wrap justify-between gap-8 border-t border-bone/20 pt-8 text-bone/70">
+        <address className="not-italic leading-loose">{business.name}<br />{business.address.street}<br />{business.address.zip} {business.address.city}<br />{business.phone.display}</address>
+        <nav aria-label="Footer" className="flex flex-col gap-2"><a href="#start" className="hover:text-bone">Nach oben ↑</a><a href="#" className="hover:text-bone">Impressum</a><a href="#" className="hover:text-bone">Datenschutz</a></nav>
       </div>
     </footer>
   );

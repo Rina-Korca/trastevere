@@ -1,29 +1,38 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-const styles = ["Leichter Weißwein oder Spritz", "Fruchtiger Rosé oder Pils", "Runder Rotwein oder Helles", "Kräftiger Rotwein oder dunkles Bier"];
+import { Headline } from "./Reveal";
+
+const styles = ["Leichter Weißwein oder ein frischer Spritz", "Fruchtiger Rosé oder ein knackiges Pils", "Runder Rotwein oder ein süffiges Helles", "Kräftiger Rotwein oder ein dunkles Bier"];
+const bubbles = Array.from({ length: 14 }, (_, i) => ({ x: 28 + ((i * 37) % 44), d: 3 + (i % 5), dl: (i * 0.45) % 4, r: 1 + (i % 3) * 0.6 }));
+
 export default function Drinks() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.8", "center 0.4"] });
-  const fill = useTransform(scrollYProgress, [0, 1], [100, 30]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.7", "center 0.4"] });
+  const fill = useTransform(scrollYProgress, [0, 1], [90, 28]);
   const [v, setV] = useState(1);
   return (
-    <section ref={ref} className="overflow-hidden bg-espresso px-5 py-28 text-travertine [--espresso:#1e1611]">
-      <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
-        <svg viewBox="0 0 100 160" className="mx-auto h-80" role="img" aria-label="Weinglas füllt sich">
-          <defs><clipPath id="bowl"><path d="M20 10h60c0 45-10 70-30 75C30 80 20 55 20 10z" /></clipPath></defs>
-          <motion.rect x="0" width="100" height="100" fill="#c9502b" clipPath="url(#bowl)" style={{ y: fill }} />
-          <path d="M20 10h60c0 45-10 70-30 75C30 80 20 55 20 10z" fill="none" stroke="#f4ecdf" strokeWidth="2" />
-          <path d="M50 85v55M30 142h40" stroke="#f4ecdf" strokeWidth="2" />
-          {[0, 1, 2].map(i => <motion.circle key={i} cx={125 - 0} r="3" fill="#f1c65b" animate={{ cy: [150, 0], opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 3 + i, delay: i, ease: "easeOut" }} style={{ translateX: -40 + i * 18 }} />)}
-        </svg>
+    <section ref={ref} className="relative overflow-hidden bg-coal px-5 py-32 text-bone md:px-10 md:py-44">
+      <div className="absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-clay/20 blur-[140px]" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
         <div>
-          <h2 className="font-display text-5xl font-semibold md:text-6xl">Wein, Bier <span className="italic text-butter">&amp; mehr</span></h2>
-          <p className="mt-4 text-travertine/70">Von leicht bis kräftig – allgemeine Empfehlung, keine konkreten Produzenten.</p>
-          <label className="mt-8 block font-mono text-xs uppercase tracking-widest">leicht ⟷ kräftig
-            <input type="range" min={0} max={3} value={v} onChange={e => setV(+e.target.value)} className="mt-3 w-full accent-[#f1c65b]" /></label>
-          <p className="mt-6 font-display text-3xl italic text-butter" aria-live="polite">{styles[v]}</p>
+          <p className="label mb-6 text-gold">— Wein, Bier & mehr</p>
+          <Headline className="text-6xl md:text-9xl" lines={["Von leicht", <em key="a" className="text-gold">bis kräftig.</em>]} />
+          <p className="mt-8 max-w-md text-bone/60">Allgemeine Empfehlung – keine konkreten Produzenten oder Preise.</p>
+          <label className="label mt-12 block text-bone/60">
+            <span className="flex justify-between"><span>Leicht</span><span>Kräftig</span></span>
+            <input type="range" min={0} max={3} value={v} onChange={e => setV(+e.target.value)} className="mt-4 w-full accent-[#c0653b]" aria-label="Von leicht bis kräftig" />
+          </label>
+          <motion.p key={v} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} aria-live="polite" className="display mt-8 min-h-24 text-4xl italic md:text-5xl">{styles[v]}</motion.p>
         </div>
+        <svg viewBox="0 0 100 150" className="mx-auto h-[26rem]" role="img" aria-label="Weinglas füllt sich">
+          <defs><clipPath id="bowl"><path d="M22 8h56c1 42-9 68-28 72C31 76 21 50 22 8z" /></clipPath>
+            <linearGradient id="wine" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#9c3a2a" /><stop offset="1" stopColor="#4a1410" /></linearGradient></defs>
+          <g clipPath="url(#bowl)"><motion.rect x="0" width="100" height="100" fill="url(#wine)" style={{ y: fill }} />
+            {bubbles.map((b, i) => <motion.circle key={i} cx={b.x} r={b.r} fill="#f3ece1" fillOpacity="0.5" animate={{ cy: [78, 20], opacity: [0, 0.8, 0] }} transition={{ repeat: Infinity, duration: b.d, delay: b.dl, ease: "easeOut" }} />)}</g>
+          <path d="M22 8h56c1 42-9 68-28 72C31 76 21 50 22 8z" fill="none" stroke="#f3ece1" strokeWidth="1" strokeOpacity=".8" />
+          <path d="M50 80v52M32 134c10-4 26-4 36 0" stroke="#f3ece1" strokeWidth="1" fill="none" strokeOpacity=".8" />
+        </svg>
       </div>
     </section>
   );

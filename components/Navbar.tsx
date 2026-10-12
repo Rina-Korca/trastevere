@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { Phone, Menu, X, MapPin } from "lucide-react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { Phone, ArrowUpRight } from "lucide-react";
 import { business, hasPhone } from "@/lib/business-info";
 
 const links = [
   { id: "start", label: "Start" },
-  { id: "geschichte", label: "Amore" },
+  { id: "geschichte", label: "Geschichte" },
   { id: "speisekarte", label: "Speisekarte" },
+  { id: "galerie", label: "Galerie" },
   { id: "teilen", label: "Teilen" },
   { id: "besuch", label: "Besuch" },
 ];
@@ -15,67 +16,72 @@ const links = [
 export default function Navbar() {
   const [active, setActive] = useState("start");
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   useEffect(() => {
-    const io = new IntersectionObserver(
-      es => es.forEach(e => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: "-45% 0px -50% 0px" });
     links.forEach(l => { const el = document.getElementById(l.id); if (el) io.observe(el); });
-    return () => io.disconnect();
+    const onS = () => setScrolled(window.scrollY > 80);
+    onS(); window.addEventListener("scroll", onS, { passive: true });
+    return () => { io.disconnect(); window.removeEventListener("scroll", onS); };
   }, []);
+  useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; }, [open]);
 
   const call = hasPhone ? `tel:${business.phone.tel}` : "#besuch";
 
   return (
     <>
-      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[60] h-1 w-full origin-left bg-terracotta" />
-      {/* Floating pill island */}
-      <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-        <nav aria-label="Hauptnavigation" className="flex items-center gap-1 rounded-full border border-espresso/15 bg-travertine/70 p-1.5 shadow-[0_8px_30px_rgba(0,0,0,.12)] backdrop-blur-xl">
-          <a href="#start" className="px-4 font-display text-lg font-semibold italic">{business.name}</a>
-          <ul className="hidden items-center md:flex">
+      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[70] h-[2px] w-full origin-left bg-clay" />
+      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between px-5 py-4 md:px-10 md:py-6">
+        <a href="#start" className="display relative z-[70] text-3xl italic text-bone mix-blend-difference">{business.name}</a>
+
+        <nav aria-label="Hauptnavigation" className={`hidden rounded-full border px-2 py-1.5 backdrop-blur-xl transition-all duration-500 md:block ${scrolled ? "border-bone/15 bg-ink/70" : "border-bone/20 bg-bone/10"}`}>
+          <ul className="flex">
             {links.map(l => (
               <li key={l.id} className="relative">
-                <a href={`#${l.id}`} className="relative z-10 block px-4 py-2 text-sm font-medium">{l.label}</a>
-                {active === l.id && (
-                  <motion.span layoutId="pill" className="absolute inset-0 rounded-full bg-butter" transition={{ type: "spring", stiffness: 400, damping: 32 }} />
-                )}
+                <a href={`#${l.id}`} className={`label relative z-10 block px-4 py-2.5 transition-colors ${active === l.id ? "text-ink" : "text-bone/80 hover:text-bone"}`}>{l.label}</a>
+                {active === l.id && <motion.span layoutId="pill" className="absolute inset-0 rounded-full bg-bone" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
               </li>
             ))}
           </ul>
-          <a href={call} className="ml-1 hidden items-center gap-2 rounded-full bg-espresso px-4 py-2 text-sm font-medium text-travertine transition hover:bg-terracotta md:flex">
-            <Phone size={15} /> Anrufen
-          </a>
-          <button aria-label="Menü" aria-expanded={open} onClick={() => setOpen(o => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-full bg-espresso text-travertine md:hidden">
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
         </nav>
+
+        <div className="relative z-[70] flex items-center gap-3">
+          <a href={call} className="group label hidden items-center gap-2 rounded-full bg-clay px-5 py-3 text-bone transition hover:bg-bone hover:text-ink md:flex">
+            <Phone size={14} /> Anrufen <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+          <button aria-label={open ? "Menü schließen" : "Menü öffnen"} aria-expanded={open} onClick={() => setOpen(o => !o)} className="grid h-11 w-11 place-items-center rounded-full border border-bone/30 bg-ink/40 backdrop-blur md:hidden">
+            <span className="relative block h-3 w-5">
+              <span className={`absolute left-0 h-px w-5 bg-bone transition-all ${open ? "top-1.5 rotate-45" : "top-0"}`} />
+              <span className={`absolute left-0 h-px w-5 bg-bone transition-all ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
+            </span>
+          </button>
+        </div>
       </header>
 
-      {/* Mobile fullscreen sheet */}
-      <motion.div
-        initial={false}
-        animate={{ clipPath: open ? "circle(150% at 90% 5%)" : "circle(0% at 90% 5%)" }}
-        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed inset-0 z-40 flex flex-col justify-center bg-terracotta px-8 text-travertine md:hidden"
-        aria-hidden={!open}
-        inert={!open}
-      >
-        {links.map((l, i) => (
-          <motion.a key={l.id} href={`#${l.id}`} onClick={() => setOpen(false)}
-            animate={{ y: open ? 0 : 40, opacity: open ? 1 : 0 }} transition={{ delay: open ? 0.25 + i * 0.07 : 0 }}
-            className="font-display text-5xl font-semibold leading-tight">{l.label}</motion.a>
-        ))}
-        <p className="mt-8 flex items-center gap-2 text-sm"><MapPin size={16} /> {business.address.street}, {business.address.city}</p>
-      </motion.div>
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }} className="fixed inset-0 z-[65] flex flex-col justify-between bg-ink px-6 pb-8 pt-28 text-bone md:hidden">
+            <ul>
+              {links.map((l, i) => (
+                <li key={l.id} className="overflow-hidden border-b border-bone/10">
+                  <motion.a href={`#${l.id}`} onClick={() => setOpen(false)} initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3 + i * 0.06, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="display flex items-baseline justify-between py-3 text-5xl"><span>{l.label}</span><span className="label text-bone/40">0{i + 1}</span></motion.a>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <p className="label text-bone/60">{business.address.street}, {business.address.city}</p>
+              <a href={call} className="label mt-4 flex items-center justify-center gap-2 rounded-full bg-clay py-4"><Phone size={14} /> Anrufen</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Mobile bottom call bar */}
-      <a href={call} className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-terracotta text-travertine shadow-xl md:hidden" aria-label="Anrufen">
-        <Phone />
-      </a>
+      <a href={call} aria-label="Anrufen" className="fixed bottom-5 right-5 z-[60] grid h-14 w-14 place-items-center rounded-full bg-clay text-bone shadow-2xl md:hidden"><Phone size={20} /></a>
     </>
   );
 }

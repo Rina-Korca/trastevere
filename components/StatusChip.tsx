@@ -22,13 +22,13 @@ export function useStatus() {
   return s;
 }
 
-export default function StatusChip() {
+export default function StatusChip({ dark = true }: { dark?: boolean }) {
   const s = useStatus();
   if (!s) return null;
   const open = s.startsWith("Jetzt");
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-espresso/20 bg-travertine/70 px-4 py-1.5 font-mono text-xs backdrop-blur">
-      <span className={`h-2 w-2 rounded-full ${open ? "bg-olive animate-pulse" : "bg-terracotta"}`} />
+    <span className={`label inline-flex items-center gap-2.5 rounded-full border px-4 py-2 backdrop-blur-md ${dark ? "border-bone/25 bg-bone/10 text-bone" : "border-ink/20 text-ink"}`}>
+      <span className="relative flex h-2 w-2"><span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${open ? "bg-moss" : "bg-clay"}`} /><span className={`relative inline-flex h-2 w-2 rounded-full ${open ? "bg-moss" : "bg-clay"}`} /></span>
       {s}
     </span>
   );

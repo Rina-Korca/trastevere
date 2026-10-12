@@ -1,21 +1,39 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
+
+const modes = {
+  mittag: { img: "/images/friends.jpg", title: "Mittag", text: "Ein ruhiger Teller, ein Espresso und Zeit für ein gutes Gespräch.", tint: "from-gold/30 via-transparent to-ink/60" },
+  abend: { img: "/images/dinner.jpg", title: "Abend", text: "Kerzenlicht, ein Glas Wein und eine Platte für alle am Tisch.", tint: "from-clay/30 via-ink/40 to-ink/90" },
+};
 export default function DayNight() {
-  const [day, setDay] = useState(true);
+  const [m, setM] = useState<"mittag" | "abend">("abend");
+  const c = modes[m];
   return (
-    <motion.section animate={{ background: day ? "linear-gradient(160deg,#f6d98a,#f19a6b)" : "linear-gradient(160deg,#1b2447,#5b3a6e)" }} transition={{ duration: 0.8 }}
-      className={`px-5 py-28 text-center ${day ? "text-espresso" : "text-travertine"}`}>
-      <h2 className="font-display text-5xl font-semibold md:text-7xl">Mittag <span className="italic">&amp;</span> Abend</h2>
-      <button role="switch" aria-checked={!day} aria-label="Zwischen Mittag und Abend wechseln" onClick={() => setDay(d => !d)}
-        className="relative mx-auto mt-8 flex h-14 w-28 items-center rounded-full bg-espresso/25 p-1.5 backdrop-blur">
-        <motion.span layout transition={{ type: "spring", stiffness: 300, damping: 22 }} className={`grid h-11 w-11 place-items-center rounded-full bg-travertine text-terracotta ${day ? "" : "ml-auto"}`}>
-          {day ? <Sun size={22} /> : <Moon size={22} />}</motion.span>
-      </button>
-      <p className="mx-auto mt-8 max-w-lg font-display text-2xl italic">
-        {day ? "Mittags: ein ruhiger Teller, ein Espresso, Zeit für ein Gespräch." : "Abends: Kerzenlicht, Wein und eine Platte für alle."}</p>
-      <p className="mt-3 font-mono text-xs opacity-70">Zeiten siehe „Besuch“ – Text ist generisch.</p>
-    </motion.section>
+    <section className="relative flex min-h-[90svh] items-center overflow-hidden bg-ink px-5 py-32 text-bone md:px-10">
+      <AnimatePresence mode="sync">
+        <motion.div key={m} initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="absolute inset-0">
+          <Image src={c.img} alt="" fill sizes="100vw" className="object-cover" /><div className={`absolute inset-0 bg-gradient-to-br ${c.tint}`} />
+        </motion.div>
+      </AnimatePresence>
+      <div className="relative mx-auto w-full max-w-7xl">
+        <p className="label text-gold">— Mittag & Abend</p>
+        <div role="radiogroup" aria-label="Tageszeit" className="relative mt-8 inline-flex rounded-full border border-bone/30 bg-ink/40 p-1.5 backdrop-blur-xl">
+          {(["mittag", "abend"] as const).map(k => (
+            <button key={k} role="radio" aria-checked={m === k} onClick={() => setM(k)} className={`label relative z-10 flex items-center gap-2 px-6 py-3 transition-colors ${m === k ? "text-ink" : "text-bone"}`}>
+              {k === "mittag" ? <Sun size={14} /> : <Moon size={14} />}{modes[k].title}
+              {m === k && <motion.span layoutId="dn" className="absolute inset-0 -z-10 rounded-full bg-bone" transition={{ type: "spring", stiffness: 350, damping: 30 }} />}
+            </button>))}
+        </div>
+        <AnimatePresence mode="wait">
+          <motion.div key={m} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
+            <h2 className="display mt-10 text-[clamp(5rem,16vw,15rem)]">{c.title}</h2>
+            <p className="display mt-4 max-w-xl text-3xl italic text-bone/90">{c.text}</p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
   );
 }

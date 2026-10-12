@@ -1,16 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { business } from "@/lib/business-info";
 export default function Intro() {
   const [done, setDone] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setDone(true), 1500); return () => clearTimeout(t); }, []);
+  useEffect(() => { const t = setTimeout(() => setDone(true), 2200); return () => clearTimeout(t); }, []);
   if (done) return null;
   return (
-    <div aria-hidden className="fixed inset-0 z-[200] grid grid-cols-6 grid-rows-4 pointer-events-none">
-      {Array.from({ length: 24 }).map((_, i) => (
-        <motion.div key={i} className={i % 3 === 0 ? "bg-terracotta" : i % 3 === 1 ? "bg-butter" : "bg-olive"}
-          initial={{ rotateY: 0 }} animate={{ rotateY: 90, opacity: 0 }} transition={{ delay: 0.5 + ((i % 6) + Math.floor(i / 6)) * 0.07, duration: 0.5 }} />
-      ))}
-    </div>
+    <motion.div aria-hidden initial={{ y: 0 }} animate={{ y: "-100%" }} transition={{ delay: 1.5, duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+      className="fixed inset-0 z-[200] grid place-items-center bg-ink text-bone">
+      <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.2 }} className="display text-6xl italic md:text-8xl">{business.name}</motion.p>
+    </motion.div>
   );
 }

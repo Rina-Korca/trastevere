@@ -1,24 +1,22 @@
 "use client";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 import { business, hasPhone } from "@/lib/business-info";
+import Reveal, { Headline } from "./Reveal";
+import Magnetic from "./Magnetic";
 export default function Takeaway() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "center 0.5"] });
-  const lid = useTransform(scrollYProgress, [0, 1], [0, -115]);
   return (
-    <section ref={ref} className="mx-auto max-w-5xl px-5 py-28">
-      <div className="grid items-center gap-10 rounded-[2.5rem] bg-rosato p-8 md:grid-cols-2 md:p-14">
-        <div style={{ perspective: 800 }} className="relative mx-auto h-56 w-64" aria-hidden>
-          <div className="absolute bottom-0 h-36 w-full rounded-b-3xl bg-terracotta [background-image:repeating-linear-gradient(45deg,transparent_0_14px,rgba(255,255,255,.15)_14px_28px)]"><span className="absolute inset-0 grid place-items-center text-6xl">🍕</span></div>
-          <motion.div style={{ rotateX: lid, transformOrigin: "top" }} className="absolute top-12 h-14 w-full rounded-t-3xl bg-butter" />
+    <section className="bg-bone px-5 pb-32 md:px-10 md:pb-44">
+      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-clay text-bone md:grid-cols-2">
+        <div className="p-8 md:p-16">
+          <p className="label mb-6 text-bone/70">— Zum Mitnehmen</p>
+          <Headline className="text-6xl md:text-8xl" lines={["Gern auch", <em key="a">to go.</em>]} />
+          <Reveal delay={0.2}>
+            <p className="mt-8 max-w-md text-lg text-bone/90">Einfach anrufen unter <span className="font-mono">{business.phone.display}</span>. Kein Warenkorb, kein Formular – nur ein kurzes Gespräch.</p>
+            <div className="mt-8"><Magnetic><a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="label inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 transition hover:bg-bone hover:text-ink"><Phone size={14} /> Anrufen</a></Magnetic></div>
+          </Reveal>
         </div>
-        <div>
-          <h2 className="font-display text-5xl font-semibold md:text-6xl">Zum <span className="italic text-terracotta">Mitnehmen</span></h2>
-          <p className="mt-4 text-lg">Gern auch zum Mitnehmen: einfach anrufen unter <strong className="font-mono">{business.phone.display}</strong>. Kein Warenkorb, kein Formular.</p>
-          <a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="mt-6 inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-4 font-medium text-travertine transition hover:bg-terracotta"><Phone size={18} /> Anrufen</a>
-        </div>
+        <div className="relative min-h-80"><Image src="/images/pizza-3.jpg" alt="Pizza zum Mitnehmen" fill sizes="50vw" className="object-cover" /></div>
       </div>
     </section>
   );
