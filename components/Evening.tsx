@@ -25,14 +25,14 @@ export default function Evening() {
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div key={i} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
-                <span className="display text-8xl text-clay md:text-9xl">{acts[i].n}</span>
+                <span className="display text-8xl text-gold md:text-9xl">{acts[i].n}</span>
                 <h2 className="display text-6xl md:text-8xl">{acts[i].t}</h2>
                 <p className="mt-6 max-w-md text-lg text-bone/70">{acts[i].d}</p>
               </motion.div>
             </AnimatePresence>
           </div>
           <ol className="flex gap-2" aria-label="Fortschritt">
-            {acts.map((a, k) => <li key={a.n} className="h-px flex-1 bg-bone/20"><motion.div className="h-px bg-clay" animate={{ width: k <= i ? "100%" : "0%" }} transition={{ duration: 0.5 }} /></li>)}
+            {acts.map((a, k) => <li key={a.n} className="h-px flex-1 bg-bone/20"><motion.div className="h-px bg-gold" animate={{ width: k <= i ? "100%" : "0%" }} transition={{ duration: 0.5 }} /></li>)}
           </ol>
         </div>
         <div className="relative hidden md:block">

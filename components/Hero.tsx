@@ -2,47 +2,41 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Phone, ArrowDown } from "lucide-react";
+import { Phone } from "lucide-react";
 import StatusChip from "./StatusChip";
-import Magnetic from "./Magnetic";
+import FlagLine from "./FlagLine";
 import { business, hasPhone } from "@/lib/business-info";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.04, 1.14]);
   return (
     <section id="start" ref={ref} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-ink text-bone">
       <motion.div style={{ y, scale }} className="absolute inset-0">
-        <Image src="/images/interior.jpg" alt="Gastraum" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/images/interior.jpg" alt="Gastraum mit warmem Licht" fill priority sizes="100vw" className="object-cover object-[60%_50%]" />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/60" />
-      <motion.div style={{ y: textY }} className="relative z-10 flex h-full flex-col justify-end px-5 pb-10 md:px-10 md:pb-14">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.3 }} className="mb-6"><StatusChip /></motion.div>
-        <h1 className="display text-[clamp(4.5rem,21vw,22rem)] leading-[.82]" aria-label={business.name}>
-          <span className="block overflow-hidden pb-[.08em]">
-            <motion.span className="block" initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>{business.name}</motion.span>
-          </span>
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/50 md:bg-gradient-to-r md:from-ink/90 md:via-ink/50 md:to-ink/10" />
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-5 pb-28 pt-28 md:justify-center md:px-10 md:pb-0">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}><StatusChip /></motion.div>
+        <p className="label mt-8 text-gold">Ristorante · Pizzeria · Cucina Italiana</p>
+        <h1 className="display mt-5 max-w-3xl text-[clamp(3rem,8vw,7rem)] leading-[1.02]">
+          {["Ein Abend", "wie in Rom."].map((l, i) => (
+            <span key={l} className="block overflow-hidden pb-[.1em]">
+              <motion.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 1.9 + i * 0.14, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>{i ? <em className="text-gold">{l}</em> : l}</motion.span>
+            </span>))}
         </h1>
-        <p className="mt-6 hidden max-w-xl text-bone/75 md:block">Italienische Küche, Pizza, Pasta und Wein in gemütlicher Atmosphäre. Komm vorbei, teile deinen Teller mit Freunden und lass den Alltag draußen.</p>
-        <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.6, duration: 1 }} className="display max-w-md text-3xl italic text-bone/90 md:text-4xl">
-            Ein Stück Rom – für Freunde am Tisch.
-          </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8 }} className="flex flex-wrap items-center gap-3">
-            <Magnetic><a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="label inline-flex items-center gap-2 rounded-full bg-clay px-7 py-4 transition hover:bg-bone hover:text-ink"><Phone size={14} /> Anrufen</a></Magnetic>
-            <Magnetic><a href="#speisekarte" className="label inline-flex items-center gap-2 rounded-full border border-bone/40 px-7 py-4 backdrop-blur transition hover:bg-bone hover:text-ink">Speisekarte</a></Magnetic>
-            <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="label px-3 py-4 underline underline-offset-8 decoration-bone/40 hover:decoration-bone">Route planen</a>
-          </motion.div>
-        </div>
-        <div className="label mt-10 hidden items-center justify-between border-t border-bone/20 pt-5 text-bone/60 md:flex">
-          <span>{business.address.street} · {business.address.city}</span>
-          <span>{business.services.join(" · ")}</span>
-          <span className="flex items-center gap-2">Scroll <ArrowDown size={12} className="animate-bounce" /></span>
-        </div>
-      </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.4, duration: 1 }}>
+          <FlagLine className="mt-8 w-20" />
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-bone/80">Pizza, Pasta und italienische Klassiker in warmer Atmosphäre – zum Teilen, Genießen und Verweilen.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#reservieren" className="label inline-flex min-h-14 items-center bg-gold px-8 text-ink transition hover:bg-bone">Tisch reservieren</a>
+            <a href="#speisekarte" className="label inline-flex min-h-14 items-center border border-bone/50 px-8 transition hover:bg-bone hover:text-ink">Speisekarte ansehen</a>
+          </div>
+          <a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="label mt-6 hidden items-center gap-2 text-bone/70 hover:text-bone md:inline-flex"><Phone size={13} /> {business.phone.display}</a>
+        </motion.div>
+      </div>
     </section>
   );
 }

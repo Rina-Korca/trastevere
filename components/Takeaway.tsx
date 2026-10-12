@@ -7,7 +7,7 @@ import Magnetic from "./Magnetic";
 export default function Takeaway() {
   return (
     <section className="bg-bone px-5 pb-32 md:px-10 md:pb-44">
-      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-clay text-bone md:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-olive text-bone md:grid-cols-2">
         <div className="p-8 md:p-16">
           <p className="label mb-6 text-bone/70">— Zum Mitnehmen</p>
           <Headline className="text-6xl md:text-8xl" lines={["Gern auch", <em key="a">to go.</em>]} />

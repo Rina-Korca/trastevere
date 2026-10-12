@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter, DM_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { business } from "@/lib/business-info";
 
-const instrument = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
+const instrument = Cormorant_Garamond({ variable: "--font-instrument", subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"] });
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const dmmono = DM_Mono({ variable: "--font-dmmono", subsets: ["latin"], weight: ["400", "500"] });
 

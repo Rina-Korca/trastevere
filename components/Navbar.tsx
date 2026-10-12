@@ -11,7 +11,7 @@ const links = [
   { id: "geschichte", label: "Geschichte", img: "/images/friends.jpg" },
   { id: "speisekarte", label: "Speisekarte", img: "/images/pasta.jpg" },
   { id: "galerie", label: "Galerie", img: "/images/pizza-3.jpg" },
-  { id: "teilen", label: "Teilen", img: "/images/pizza-2.jpg" },
+  { id: "reservieren", label: "Reservieren", img: "/images/dinner.jpg" },
   { id: "besuch", label: "Besuch", img: "/images/dinner.jpg" },
 ];
 
@@ -43,20 +43,21 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[80] h-[2px] w-full origin-left bg-clay" />
+      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[80] h-[2px] w-full origin-left bg-gold" />
       <motion.header animate={{ y: hidden && !open ? "-110%" : 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-[75] flex items-center justify-between gap-6 px-5 py-4 text-bone transition-colors duration-500 md:px-10 ${scrolled || open ? "border-b border-bone/10 bg-ink/80 backdrop-blur-xl" : "bg-gradient-to-b from-ink/70 to-transparent"}`}>
-        <a href="#start" onClick={() => setOpen(false)} aria-label={`${business.name} – Start`}><Logo /></a>
+        <a href="#start" onClick={() => setOpen(false)} aria-label={`${business.name} – Start`}><Logo priority className="h-10 md:h-14" /></a>
         <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
           {links.map(l => (
             <a key={l.id} href={`#${l.id}`} className={`label relative px-4 py-2 transition-colors ${active === l.id ? "text-bone" : "text-bone/60 hover:text-bone"}`}>
               {l.label}
-              {active === l.id && <motion.span layoutId="nav-underline" className="absolute inset-x-4 -bottom-0.5 h-px bg-clay" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
+              {active === l.id && <motion.span layoutId="nav-underline" className="absolute inset-x-4 -bottom-0.5 h-px bg-gold" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
             </a>))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href={call} className="label hidden items-center gap-2 rounded-full bg-clay px-5 py-3 text-bone transition hover:bg-bone hover:text-ink md:flex"><Phone size={13} /> Anrufen</a>
-          <button onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="menu-overlay" className="label group flex items-center gap-3 rounded-full border border-bone/30 bg-bone/10 py-2 pl-5 pr-2 text-bone backdrop-blur transition hover:bg-bone/20 lg:hidden">
+          <a href={call} className="label hidden min-h-11 items-center gap-2 px-3 text-bone/80 transition hover:text-bone md:flex"><Phone size={13} /> Anrufen</a>
+          <a href="#reservieren" className="label hidden min-h-11 items-center bg-gold px-6 text-ink transition hover:bg-bone md:inline-flex">Tisch reservieren</a>
+          <button onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="menu-overlay" className="label group flex items-center gap-3 rounded-full border border-bone/30 bg-bone/10 py-1.5 pl-5 pr-1.5 text-bone backdrop-blur transition hover:bg-bone/20 lg:hidden">
             <span>{open ? "Schließen" : "Menü"}</span>
             <span className="relative grid h-9 w-9 place-items-center rounded-full bg-bone text-ink">
               <span className={`absolute h-px w-4 bg-ink transition-all duration-300 ${open ? "rotate-45" : "-translate-y-[3px] group-hover:-translate-y-[4px]"}`} />
@@ -78,13 +79,13 @@ export default function Navbar() {
                     <motion.a href={`#${l.id}`} onClick={() => setOpen(false)} onMouseEnter={() => setHover(i)} onFocus={() => setHover(i)}
                       initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.35 + i * 0.06, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                       className={`display flex items-baseline gap-5 py-1 text-6xl transition-all duration-300 md:text-8xl ${hover === i ? "translate-x-3 text-bone" : "text-bone/35"}`}>
-                      <span className="label text-clay">0{i + 1}</span>{l.label}
+                      <span className="label text-gold">0{i + 1}</span>{l.label}
                     </motion.a>
                   </li>))}
               </ul>
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <address className="label not-italic leading-loose text-bone/60">{business.address.street}<br />{business.address.zip} {business.address.city}</address>
-                <a href={call} className="label inline-flex items-center gap-2 rounded-full bg-clay px-7 py-4">Anrufen <ArrowUpRight size={14} /></a>
+                <a href={call} className="label inline-flex min-h-12 items-center gap-2 bg-gold px-7 text-ink">Anrufen <ArrowUpRight size={14} /></a>
               </div>
             </div>
             <div className="relative hidden md:block">
@@ -99,7 +100,10 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      <a href={call} aria-label="Anrufen" className="fixed bottom-5 right-5 z-[60] grid h-14 w-14 place-items-center rounded-full bg-clay text-bone shadow-2xl md:hidden"><Phone size={20} /></a>
+      <div className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 border-t border-bone/15 bg-ink/90 backdrop-blur-xl md:hidden">
+        <a href="#reservieren" className="label grid min-h-14 place-items-center bg-gold text-ink">Tisch reservieren</a>
+        <a href={call} className="label flex min-h-14 items-center justify-center gap-2 text-bone"><Phone size={14} /> Anrufen</a>
+      </div>
     </>
   );
 }

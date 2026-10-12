@@ -12,7 +12,8 @@ import Evening from "@/components/Evening";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Visit from "@/components/Visit";
-import Spotlight from "@/components/Spotlight";
+import Services from "@/components/Services";
+import Reservation from "@/components/Reservation";
 import CardStack from "@/components/CardStack";
 import PhotoStack from "@/components/PhotoStack";
 import Footer from "@/components/Footer";
@@ -29,7 +30,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Intro /><Cursor /><Navbar />
       <main>
-        <Hero /><Marquee /><Story /><Spotlight /><Menu /><CardStack /><Gallery /><Sharing /><Evening /><DayNight /><Mood /><Takeaway /><PhotoStack /><Reviews /><FAQ /><Visit />
+        <Hero /><Marquee /><Story /><Services /><Menu /><CardStack /><Gallery /><Sharing /><Evening /><DayNight /><Mood /><Takeaway /><PhotoStack /><Reviews /><FAQ /><Reservation /><Visit />
       </main>
       <Footer />
     </>

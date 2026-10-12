@@ -23,7 +23,7 @@ export default function Marquee() {
   return (
     <div className="overflow-hidden border-y border-ink/15 bg-bone py-6" aria-label="Pasta, Pizza, Antipasti, Dolci, Vino">
       <motion.div style={{ x }} className="display flex w-max gap-10 whitespace-nowrap text-6xl md:text-8xl" aria-hidden>
-        {row.map((w, i) => <span key={i} className="flex items-center gap-10"><span className={i % 2 ? "italic" : "outline-text"}>{w}</span><span className="text-clay text-3xl">✦</span></span>)}
+        {row.map((w, i) => <span key={i} className="flex items-center gap-10"><span className={i % 2 ? "italic" : "outline-text"}>{w}</span><span className="text-gold text-3xl">✦</span></span>)}
       </motion.div>
     </div>
   );

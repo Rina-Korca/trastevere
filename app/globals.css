@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #130c0a;
-  --coal: #241613;
-  --bone: #f7f0e4;
-  --paper: #eddfc9;
-  --clay: #cf5a30;
-  --gold: #e3bd72;
-  --moss: #7d8b55;
-  --wine: #5a1a1d;
+  --ink: #171917;
+  --coal: #1f221f;
+  --bone: #f5f0e7;
+  --paper: #ebe4d5;
+  --clay: #8b3735;
+  --gold: #bfa47a;
+  --moss: #354b3c;
+  --wine: #8b3735;
 }
 
 @theme inline {
@@ -36,8 +36,8 @@ body::after {
 }
 :focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; border-radius: 6px; }
 section[id] { scroll-margin-top: 5rem; }
-.label { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; }
-.display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: .95; }
+.label { font-family: var(--font-sans); font-weight: 500; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
+.display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1; }
 .outline-text { -webkit-text-stroke: 1px currentColor; color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
