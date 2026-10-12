@@ -27,10 +27,10 @@
   --font-mono: var(--font-dmmono), monospace;
 }
 
-html { scroll-behavior: smooth; background: var(--ink); font-size: 106.25%; }
+html { scroll-behavior: smooth; background: var(--ink); font-size: 100%; }
 @layer base {
-  main p, main blockquote, main figcaption { font-family: var(--font-body); font-size: 1.3rem; line-height: 1.6; }
-  @media (min-width: 768px) { main p { font-size: 1.4rem; } }
+  main p, main blockquote, main figcaption { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.625; }
+  
 }
 body { background: var(--bone); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--clay); color: var(--bone); }
@@ -42,7 +42,7 @@ body::after {
 }
 :focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; border-radius: 6px; }
 section[id] { scroll-margin-top: 5rem; }
-.label { font-family: var(--font-sans); font-weight: 500; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; }
+.label { font-family: var(--font-sans); font-weight: 500; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
 .display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1; }
 .outline-text { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
@@ -51,10 +51,8 @@ section[id] { scroll-margin-top: 5rem; }
 }
 
 /* Header, menu overlay and footer keep their original compact typography */
-header .label, footer .label, #menu-overlay .label { font-size: .68rem; letter-spacing: .2em; }
 header address, footer address, #menu-overlay address { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
 footer p:not(.display), #menu-overlay p { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
 
 /* Hero keeps its original typography */
-#start .label { font-size: .68rem; letter-spacing: .2em; }
-#start p:not(.display):not(.label) { font-family: var(--font-sans); font-size: 1.06rem; line-height: 1.625; }
+#start p:not(.display):not(.label) { font-family: var(--font-sans); font-size: 1.125rem; line-height: 1.625; }
