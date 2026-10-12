@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { Phone, ArrowUpRight } from "lucide-react";
 import { business, hasPhone } from "@/lib/business-info";
-import StatusChip from "./StatusChip";
+import Logo from "./Logo";
 
 const links = [
   { id: "start", label: "Start", img: "/images/interior.jpg" },
@@ -46,7 +46,7 @@ export default function Navbar() {
       <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[80] h-[2px] w-full origin-left bg-clay" />
       <motion.header animate={{ y: hidden && !open ? "-110%" : 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-[75] flex items-center justify-between gap-6 px-5 py-4 text-bone transition-colors duration-500 md:px-10 ${scrolled || open ? "border-b border-bone/10 bg-ink/80 backdrop-blur-xl" : "bg-gradient-to-b from-ink/70 to-transparent"}`}>
-        <a href="#start" onClick={() => setOpen(false)} className="display text-3xl italic md:text-4xl">{business.name}</a>
+        <a href="#start" onClick={() => setOpen(false)} aria-label={`${business.name} – Start`}><Logo /></a>
         <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
           {links.map(l => (
             <a key={l.id} href={`#${l.id}`} className={`label relative px-4 py-2 transition-colors ${active === l.id ? "text-bone" : "text-bone/60 hover:text-bone"}`}>
