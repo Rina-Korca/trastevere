@@ -29,8 +29,8 @@
 
 html { scroll-behavior: smooth; background: var(--ink); font-size: 106.25%; }
 @layer base {
-  p, blockquote, figcaption, address { font-family: var(--font-body); font-size: 1.3rem; line-height: 1.6; }
-  @media (min-width: 768px) { p, address { font-size: 1.4rem; } }
+  main p, main blockquote, main figcaption { font-family: var(--font-body); font-size: 1.3rem; line-height: 1.6; }
+  @media (min-width: 768px) { main p { font-size: 1.4rem; } }
 }
 body { background: var(--bone); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--clay); color: var(--bone); }
@@ -49,3 +49,8 @@ section[id] { scroll-margin-top: 5rem; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Header, menu overlay and footer keep their original compact typography */
+header .label, footer .label, #menu-overlay .label { font-size: .68rem; letter-spacing: .2em; }
+header address, footer address, #menu-overlay address { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
+footer p:not(.display), #menu-overlay p { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
