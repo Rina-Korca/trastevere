@@ -18,7 +18,7 @@ export default function Menu() {
   const items = menu[cat].filter(d => (!veg || d.veg) && (d.name + d.desc).toLowerCase().includes(q.toLowerCase()));
 
   return (
-    <section id="speisekarte" className="bg-bone px-5 py-32 md:px-10 md:py-44"
+    <section id="speisekarte" className="bg-bone px-5 py-16 md:px-10 md:py-24"
       onMouseMove={e => { mx.set(e.clientX); my.set(e.clientY); }}>
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Speisekarte</p>
@@ -27,37 +27,37 @@ export default function Menu() {
         <p className="label mt-6 inline-block rounded-full border border-clay/50 px-4 py-2 text-clay">Beispiel-Gerichte · bitte durch die echte Karte ersetzen</p>
 
         <div className="mt-10 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-3">
+          <div className="min-w-0 md:col-span-3">
             <div className="md:sticky md:top-28">
               <ul role="tablist" className="flex gap-2 overflow-x-auto md:flex-col md:gap-0">
                 {cats.map(c => (
                   <li key={c} className="shrink-0">
                     <button role="tab" aria-selected={c === cat} onClick={() => setCat(c)}
-                      className={`display flex w-full items-center gap-3 py-1 text-left text-3xl transition md:text-5xl ${c === cat ? "text-ink" : "text-ink/30 hover:text-ink/70"}`}>
+                      className={`display flex min-h-11 w-full items-center gap-3 px-1 py-1 text-left text-3xl transition md:text-5xl ${c === cat ? "text-ink" : "text-ink/30 hover:text-ink/70"}`}>
                       {c === cat && <motion.span layoutId="dot" className="h-2 w-2 rounded-full bg-clay" />}{c}
                     </button>
                   </li>))}
               </ul>
               <div className="mt-8 flex items-center gap-2 border-b border-ink/30 pb-2"><Search size={14} />
-                <input value={q} onChange={e => setQ(e.target.value)} placeholder="Suchen" aria-label="Speisekarte durchsuchen" className="label w-full bg-transparent outline-none placeholder:text-ink/40" /></div>
-              <button aria-pressed={veg} onClick={() => setVeg(v => !v)} className={`label mt-4 rounded-full border px-4 py-2 transition ${veg ? "border-moss bg-moss text-bone" : "border-ink/30"}`}>Nur vegetarisch</button>
+                <input value={q} onChange={e => setQ(e.target.value)} placeholder="Suchen" aria-label="Speisekarte durchsuchen" className="label min-w-0 w-full bg-transparent outline-none placeholder:text-ink/40" /></div>
+              <button aria-pressed={veg} onClick={() => setVeg(v => !v)} className={`label mt-4 min-h-11 rounded-full border px-5 py-2 transition ${veg ? "border-moss bg-moss text-bone" : "border-ink/30"}`}>Nur vegetarisch</button>
             </div>
           </div>
 
-          <ul className="md:col-span-9">
+          <ul className="min-w-0 md:col-span-9">
             <AnimatePresence mode="popLayout">
               {items.map((d, i) => (
                 <motion.li layout key={d.name} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: i * 0.05 }}
                   className="border-t border-ink/15 last:border-b" onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)}>
-                  <button onClick={() => setOpenRow(openRow === d.name ? null : d.name)} aria-expanded={openRow === d.name} className="group flex w-full items-baseline gap-4 py-6 text-left">
-                    <span className="label w-8 text-ink/40">0{i + 1}</span>
-                    <span className="display text-4xl transition group-hover:translate-x-2 group-hover:italic md:text-6xl">{d.name}</span>
+                  <button onClick={() => setOpenRow(openRow === d.name ? null : d.name)} aria-expanded={openRow === d.name} className="group flex w-full items-baseline gap-3 py-5 text-left md:gap-4 md:py-6">
+                    <span className="label hidden w-8 shrink-0 text-ink/40 sm:block">0{i + 1}</span>
+                    <span className="display min-w-0 text-3xl transition group-hover:translate-x-2 group-hover:italic md:text-6xl">{d.name}</span>
                     {d.veg && <span className="label rounded-full bg-moss px-2 py-0.5 text-bone">V</span>}
                     <span className="mb-2 flex-1 border-b border-dotted border-ink/30" />
-                    <span className="label text-ink/50">€ —</span>
+                    <span className="label shrink-0 text-ink/50">€ —</span>
                   </button>
                   <AnimatePresence>{openRow === d.name && (
-                    <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pb-6 pl-12 text-lg text-ink/70">{d.desc}</motion.p>)}</AnimatePresence>
+                    <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pb-6 pl-0 text-lg sm:pl-12 text-ink/70">{d.desc}</motion.p>)}</AnimatePresence>
                 </motion.li>))}
             </AnimatePresence>
             {!items.length && <li className="py-10 text-ink/50">Nichts gefunden.</li>}

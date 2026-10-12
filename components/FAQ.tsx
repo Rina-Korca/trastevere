@@ -16,7 +16,7 @@ const faq = [
 export default function FAQ() {
   const [o, setO] = useState<number | null>(0);
   return (
-    <section className="bg-paper px-5 py-32 md:px-10 md:py-44">
+    <section className="bg-paper px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto grid max-w-7xl gap-8 md:gap-12 md:grid-cols-12">
         <div className="md:col-span-5"><p className="label mb-6 text-clay">— FAQ</p><Headline className="text-6xl md:text-8xl" lines={["Gut", <em key="a" className="text-clay">zu wissen.</em>]} />
           <p className="label mt-6 text-clay">Antworten sind Platzhalter – bitte bestätigen.</p></div>

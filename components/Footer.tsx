@@ -8,7 +8,7 @@ export default function Footer() {
       <FlagLine className="mx-auto mt-10 w-24" />
       <div className="label mt-10 flex flex-wrap justify-between gap-8 border-t border-bone/20 pt-8 text-bone/70">
         <div className="flex flex-col gap-6 text-bone"><Logo className="h-14 md:h-16" /><address className="not-italic leading-loose">{business.name}<br />{business.address.street}<br />{business.address.zip} {business.address.city}<br />{business.phone.display}</address></div>
-        <nav aria-label="Footer" className="flex flex-col gap-2"><a href="#start" className="hover:text-bone">Nach oben ↑</a><a href="#" className="hover:text-bone">Impressum</a><a href="#" className="hover:text-bone">Datenschutz</a></nav>
+        <nav aria-label="Footer" className="flex flex-col gap-2"><a href="#start" className="py-2 hover:text-bone">Nach oben ↑</a><a href="#" className="py-2 hover:text-bone">Impressum</a><a href="#" className="py-2 hover:text-bone">Datenschutz</a></nav>
       </div>
     </footer>
   );

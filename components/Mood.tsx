@@ -16,7 +16,7 @@ type K = keyof typeof moods;
 export default function Mood() {
   const [m, setM] = useState<K>("Gemütlich");
   return (
-    <section id="stimmung" className="bg-bone px-5 py-32 md:px-10 md:py-44">
+    <section id="stimmung" className="bg-bone px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Wonach ist dir?</p>
         <Headline className="text-6xl md:text-9xl" lines={["Was passt zu", <em key="a" className="text-clay">deiner Laune?</em>]} />
@@ -25,7 +25,7 @@ export default function Mood() {
           <ul className="flex flex-wrap gap-2 self-start md:flex-col md:gap-0">
             {(Object.keys(moods) as K[]).map(k => (
               <li key={k}><button onClick={() => setM(k)} aria-pressed={k === m}
-                className={`display border-b border-transparent text-4xl transition md:py-1 md:text-7xl ${k === m ? "italic text-clay" : "text-ink/25 hover:text-ink/60"}`}>{k}</button></li>))}
+                className={`display min-h-11 border-b border-transparent text-4xl transition md:py-1 md:text-7xl ${k === m ? "italic text-clay" : "text-ink/25 hover:text-ink/60"}`}>{k}</button></li>))}
           </ul>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink">
             <AnimatePresence mode="popLayout">

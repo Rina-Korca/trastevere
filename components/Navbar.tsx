@@ -53,8 +53,8 @@ export default function Navbar() {
             </a>))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href={call} className="label hidden min-h-11 items-center gap-2 px-3 text-bone/80 transition hover:text-bone md:flex"><Phone size={13} /> Anrufen</a>
-          <a href="#reservieren" className="label hidden min-h-11 items-center bg-gold px-6 text-ink transition hover:bg-bone md:inline-flex">Tisch reservieren</a>
+          <a href={call} className="label hidden min-h-11 items-center gap-2 px-3 text-bone/80 transition hover:text-bone lg:flex"><Phone size={13} /> Anrufen</a>
+          <a href="#reservieren" className="label hidden min-h-11 items-center whitespace-nowrap bg-gold px-6 text-ink transition hover:bg-bone md:inline-flex">Tisch reservieren</a>
           <button onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="menu-overlay" className="label group flex items-center gap-3 rounded-full border border-bone/30 bg-bone/10 py-1.5 pl-5 pr-1.5 text-bone backdrop-blur transition hover:bg-bone/20 lg:hidden">
             <span>{open ? "Schließen" : "Menü"}</span>
             <span className="relative grid h-9 w-9 place-items-center rounded-full bg-bone text-ink">
@@ -81,9 +81,10 @@ export default function Navbar() {
                     </motion.a>
                   </li>))}
               </ul>
-              <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <a href="#reservieren" onClick={() => setOpen(false)} className="label inline-flex min-h-12 w-full items-center justify-center bg-gold px-7 text-ink">Tisch reservieren</a>
                 <address className="label not-italic leading-loose text-bone/60">{business.address.street}<br />{business.address.zip} {business.address.city}</address>
-                <a href={call} className="label inline-flex min-h-12 items-center gap-2 bg-gold px-7 text-ink">Anrufen <ArrowUpRight size={14} /></a>
+                <a href={call} className="label inline-flex min-h-12 items-center gap-2 border border-bone/40 px-7 text-bone">Anrufen <ArrowUpRight size={14} /></a>
               </div>
             </div>
             <div className="relative hidden md:block">

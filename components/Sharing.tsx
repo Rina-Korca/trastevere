@@ -10,7 +10,7 @@ const spots = [
 export default function Sharing() {
   const [h, setH] = useState(0);
   return (
-    <section id="teilen" className="bg-paper px-5 py-32 md:px-10 md:py-44">
+    <section id="teilen" className="bg-paper px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-8 md:gap-12 md:grid-cols-2">
         <div>
           <p className="label mb-6 text-clay">— Für Freunde</p>
@@ -23,7 +23,7 @@ export default function Sharing() {
             <Image src="/images/pizza-2.jpg" alt="Pizza zum Teilen" fill sizes="(min-width:768px) 45vw, 90vw" className="object-cover" />
             {spots.map((s, i) => (
               <button key={s.n} aria-label={s.n} onMouseEnter={() => setH(i)} onFocus={() => setH(i)} style={{ left: `${s.x}%`, top: `${s.y}%` }}
-                className="absolute -translate-x-1/2 -translate-y-1/2">
+                className="absolute grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center">
                 <span className={`relative grid h-9 w-9 place-items-center rounded-full border border-bone bg-ink/50 backdrop-blur transition ${h === i ? "scale-125 bg-clay" : ""}`}>
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bone/40" /><span className="label relative text-bone">{i + 1}</span></span>
               </button>))}

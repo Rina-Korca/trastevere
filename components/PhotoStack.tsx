@@ -14,7 +14,7 @@ export default function PhotoStack() {
   const [order, setOrder] = useState(photos.map((_, i) => i));
   const next = () => setOrder(o => [...o.slice(1), o[0]]);
   return (
-    <section className="overflow-hidden bg-bone px-5 py-32 md:px-10 md:py-44">
+    <section className="overflow-hidden bg-bone px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-10 md:gap-12 md:grid-cols-2">
         <div>
           <p className="label mb-6 text-clay">— Eindrücke</p>

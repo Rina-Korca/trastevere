@@ -33,7 +33,7 @@ export default function Story() {
           </motion.div>
         </div>
       </section>
-      <section className="bg-ink px-5 pb-16 text-bone md:px-10 md:pb-44">
+      <section className="bg-ink px-5 pb-16 text-bone md:px-10 md:pb-24">
         <div className="mx-auto grid max-w-7xl border-t border-bone/20 md:grid-cols-3">
           {pillars.map((p, i) => (
             <motion.div key={p.n} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.9, delay: i * 0.12 }}

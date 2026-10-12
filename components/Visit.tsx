@@ -8,7 +8,7 @@ export default function Visit() {
   const [today, setToday] = useState(-1);
   useEffect(() => { setToday((new Date().getDay() + 6) % 7); }, []);
   return (
-    <section id="besuch" className="bg-bone px-5 py-32 md:px-10 md:py-44">
+    <section id="besuch" className="bg-bone px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Besuch</p>
         <Headline className="text-6xl md:text-9xl" lines={["Komm", <em key="a" className="text-clay">vorbei.</em>]} />

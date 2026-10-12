@@ -4,7 +4,7 @@ import { business } from "@/lib/business-info";
 import Reveal, { Headline } from "./Reveal";
 export default function Reviews() {
   return (
-    <section className="bg-bone px-5 py-32 md:px-10 md:py-44">
+    <section className="bg-bone px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Stimmen der Gäste</p>
         <div className="flex flex-wrap items-end justify-between gap-8">
@@ -25,7 +25,7 @@ export default function Reviews() {
               </figure>
             </Reveal>))}
         </div>
-        <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="label mt-10 inline-block border-b border-ink pb-1 hover:text-clay">Auf Google ansehen ↗</a>
+        <a href={business.mapsUrl} target="_blank" rel="noopener noreferrer" className="label mt-10 inline-flex min-h-11 items-center border-b border-ink pb-1 hover:text-clay">Auf Google ansehen ↗</a>
       </div>
     </section>
   );

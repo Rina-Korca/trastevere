@@ -37,7 +37,7 @@ export default function Reservation() {
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="label mb-6 text-gold">— Reservierung</p>
-          <Headline className="text-5xl md:text-7xl" lines={["Ein Tisch", <em key="a" className="text-gold">für euch.</em>]} />
+          <Headline className="text-5xl lg:text-7xl" lines={["Ein Tisch", <em key="a" className="text-gold">für euch.</em>]} />
           <FlagLine className="mt-8 w-20" />
           <p className="mt-8 max-w-md text-lg leading-relaxed text-bone/70">Sag uns, wann ihr kommen möchtet und wie viele ihr seid. Wir melden uns, um alles zu bestätigen. Für kurzfristige Wünsche erreichst du uns auch direkt per Telefon.</p>
           <p className="mt-6 flex items-center gap-3 text-bone/80"><Phone size={16} className="text-gold" />{business.phone.display}</p>

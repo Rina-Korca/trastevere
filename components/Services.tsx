@@ -9,7 +9,7 @@ export default function Services() {
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="label mb-6 text-gold">— Bei uns</p>
-          <Headline className="text-5xl md:text-7xl" lines={["Alles, was", <em key="a" className="text-gold">dazugehört.</em>]} />
+          <Headline className="text-5xl lg:text-7xl" lines={["Alles, was", <em key="a" className="text-gold">dazugehört.</em>]} />
           <FlagLine className="mt-8 w-20" />
           <p className="mt-8 max-w-md text-lg leading-relaxed text-bone/75">Ob zu zweit, mit der ganzen Runde oder spontan nach Feierabend: gemütliche Atmosphäre, italienische Küche und Gastgeber, die sich auf deinen Besuch freuen.</p>
         </div>
