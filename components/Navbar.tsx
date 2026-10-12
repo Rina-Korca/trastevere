@@ -7,7 +7,7 @@ import { business, hasPhone } from "@/lib/business-info";
 import Logo from "./Logo";
 
 const links = [
-  { id: "start", label: "Start", img: "/images/interior.jpg" },
+  { id: "start", label: "Start", img: "/images/hero-poster.jpg" },
   { id: "geschichte", label: "Geschichte", img: "/images/friends.jpg" },
   { id: "speisekarte", label: "Speisekarte", img: "/images/pasta.jpg" },
   { id: "galerie", label: "Galerie", img: "/images/pizza-3.jpg" },

@@ -11,7 +11,7 @@ const dmmono = DM_Mono({ variable: "--font-dmmono", subsets: ["latin"], weight: 
 export const metadata: Metadata = {
   title: `${business.name} – Italienisches Restaurant in ${business.address.city}`,
   description: `${business.name}: italienische Küche, Pizza, Pasta und Wein in ${business.address.city}. Anrufen, Route planen, Speisekarte ansehen.`,
-  openGraph: { title: business.name, description: business.tagline, locale: "de_DE", type: "website" },
+  openGraph: { title: business.name, description: business.tagline, locale: "de_DE", type: "website", images: ["/images/hero-poster.jpg"] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
