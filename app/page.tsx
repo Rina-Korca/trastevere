@@ -8,7 +8,7 @@ import Sharing from "@/components/Sharing";
 import DayNight from "@/components/DayNight";
 import Mood from "@/components/Mood";
 import Takeaway from "@/components/Takeaway";
-import Drinks from "@/components/Drinks";
+import Evening from "@/components/Evening";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Visit from "@/components/Visit";
@@ -26,7 +26,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Intro /><Cursor /><Navbar />
       <main>
-        <Hero /><Marquee /><Story /><Menu /><Gallery /><Sharing /><DayNight /><Mood /><Takeaway /><Drinks /><Reviews /><FAQ /><Visit />
+        <Hero /><Marquee /><Story /><Menu /><Gallery /><Sharing /><Evening /><DayNight /><Mood /><Takeaway /><Reviews /><FAQ /><Visit />
       </main>
       <Footer />
     </>

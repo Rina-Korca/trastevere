@@ -1,35 +1,49 @@
 "use client";
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const text = "Amici heißt Freunde. Bei uns wird geteilt, gelacht und nachbestellt. Eine Platte in der Mitte, ein Glas Wein in der Hand – so schmeckt italienische Gastfreundschaft, mitten in der Stadt.";
-
-function Word({ w, p, range }: { w: string; p: MotionValue<number>; range: [number, number] }) {
-  const o = useTransform(p, range, [0.18, 1]);
-  return <motion.span style={{ opacity: o }} className="mr-[0.22em] inline-block">{w}</motion.span>;
-}
+const pillars = [
+  { n: "01", t: "Teilen", d: "Platten und Pizza kommen in die Mitte – bedient wird sich gemeinsam." },
+  { n: "02", t: "Zusammen", d: "Ein Tisch, viele Geschichten. Hier darf es lauter und länger werden." },
+  { n: "03", t: "Genießen", d: "Italienische Gastfreundschaft: ohne Eile, mit offenen Armen." },
+];
 
 export default function Story() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.75", "end 0.6"] });
-  const img = useTransform(useScroll({ target: ref, offset: ["start end", "end start"] }).scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const words = text.split(" ");
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const w = useTransform(scrollYProgress, [0, 0.55], ["34vw", "100vw"]);
+  const h = useTransform(scrollYProgress, [0, 0.55], ["46vh", "100vh"]);
+  const r = useTransform(scrollYProgress, [0, 0.55], [999, 0]);
+  const textO = useTransform(scrollYProgress, [0.25, 0.5], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.25, 0.5], [40, 0]);
+  const labelO = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   return (
-    <section id="geschichte" ref={ref} className="bg-ink px-5 py-32 text-bone md:px-10 md:py-48">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
-        <div className="md:col-span-7">
-          <p className="label mb-8 text-gold">— Unsere Haltung</p>
-          <p className="display text-4xl leading-[1.08] md:text-7xl">
-            {words.map((w, i) => <Word key={i} w={w} p={scrollYProgress} range={[i / words.length, Math.min(1, (i + 3) / words.length)]} />)}
-          </p>
+    <>
+      <section id="geschichte" ref={ref} className="relative h-[300vh] bg-ink text-bone">
+        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+          <motion.p style={{ opacity: labelO }} className="display absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(5rem,22vw,24rem)] leading-none text-bone/10">Amici</motion.p>
+          <motion.div style={{ width: w, height: h, borderTopLeftRadius: r, borderTopRightRadius: r }} className="relative z-10 overflow-hidden rounded-b-3xl">
+            <Image src="/images/friends.jpg" alt="Freunde am Tisch" fill sizes="100vw" className="object-cover" />
+            <div className="absolute inset-0 bg-ink/45" />
+          </motion.div>
+          <motion.div style={{ opacity: textO, y: textY }} className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+            <p className="label text-gold">Amici = Freunde</p>
+            <p className="display mt-6 max-w-4xl text-5xl md:text-8xl">Gutes Essen schmeckt <em>besser</em> in guter Gesellschaft.</p>
+          </motion.div>
         </div>
-        <div className="md:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px]">
-            <motion.div style={{ y: img }} className="absolute inset-[-10%]"><Image src="/images/friends.jpg" alt="Freunde am Tisch" fill sizes="(min-width:768px) 40vw, 90vw" className="object-cover" /></motion.div>
-          </div>
+      </section>
+      <section className="bg-ink px-5 pb-32 text-bone md:px-10 md:pb-44">
+        <div className="mx-auto grid max-w-7xl border-t border-bone/20 md:grid-cols-3">
+          {pillars.map((p, i) => (
+            <motion.div key={p.n} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.9, delay: i * 0.12 }}
+              className="border-b border-bone/20 py-10 md:border-b-0 md:border-r md:px-8 md:last:border-r-0 md:first:pl-0">
+              <span className="label text-gold">{p.n}</span>
+              <h3 className="display mt-6 text-5xl md:text-6xl">{p.t}</h3>
+              <p className="mt-4 max-w-xs text-bone/60">{p.d}</p>
+            </motion.div>))}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

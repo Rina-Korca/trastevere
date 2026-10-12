@@ -1,81 +1,88 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { Phone, ArrowUpRight } from "lucide-react";
 import { business, hasPhone } from "@/lib/business-info";
+import StatusChip from "./StatusChip";
 
 const links = [
-  { id: "start", label: "Start" },
-  { id: "geschichte", label: "Geschichte" },
-  { id: "speisekarte", label: "Speisekarte" },
-  { id: "galerie", label: "Galerie" },
-  { id: "teilen", label: "Teilen" },
-  { id: "besuch", label: "Besuch" },
+  { id: "start", label: "Start", img: "/images/interior.jpg" },
+  { id: "geschichte", label: "Geschichte", img: "/images/friends.jpg" },
+  { id: "speisekarte", label: "Speisekarte", img: "/images/pasta.jpg" },
+  { id: "galerie", label: "Galerie", img: "/images/pizza-3.jpg" },
+  { id: "teilen", label: "Teilen", img: "/images/pizza-2.jpg" },
+  { id: "besuch", label: "Besuch", img: "/images/dinner.jpg" },
 ];
 
 export default function Navbar() {
-  const [active, setActive] = useState("start");
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [hover, setHover] = useState(0);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   useEffect(() => {
-    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: "-45% 0px -50% 0px" });
-    links.forEach(l => { const el = document.getElementById(l.id); if (el) io.observe(el); });
-    const onS = () => setScrolled(window.scrollY > 80);
-    onS(); window.addEventListener("scroll", onS, { passive: true });
-    return () => { io.disconnect(); window.removeEventListener("scroll", onS); };
+    let last = window.scrollY;
+    const onS = () => { const y = window.scrollY; setHidden(y > last && y > 200); last = y; };
+    window.addEventListener("scroll", onS, { passive: true });
+    return () => window.removeEventListener("scroll", onS);
   }, []);
-  useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; }, [open]);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
+  }, [open]);
 
   const call = hasPhone ? `tel:${business.phone.tel}` : "#besuch";
 
   return (
     <>
-      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[70] h-[2px] w-full origin-left bg-clay" />
-      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between px-5 py-4 md:px-10 md:py-6">
-        <a href="#start" className="display relative z-[70] text-3xl italic text-bone mix-blend-difference">{business.name}</a>
-
-        <nav aria-label="Hauptnavigation" className={`hidden rounded-full border px-2 py-1.5 backdrop-blur-xl transition-all duration-500 md:block ${scrolled ? "border-bone/15 bg-ink/70" : "border-bone/20 bg-bone/10"}`}>
-          <ul className="flex">
-            {links.map(l => (
-              <li key={l.id} className="relative">
-                <a href={`#${l.id}`} className={`label relative z-10 block px-4 py-2.5 transition-colors ${active === l.id ? "text-ink" : "text-bone/80 hover:text-bone"}`}>{l.label}</a>
-                {active === l.id && <motion.span layoutId="pill" className="absolute inset-0 rounded-full bg-bone" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="relative z-[70] flex items-center gap-3">
-          <a href={call} className="group label hidden items-center gap-2 rounded-full bg-clay px-5 py-3 text-bone transition hover:bg-bone hover:text-ink md:flex">
-            <Phone size={14} /> Anrufen <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-          <button aria-label={open ? "Menü schließen" : "Menü öffnen"} aria-expanded={open} onClick={() => setOpen(o => !o)} className="grid h-11 w-11 place-items-center rounded-full border border-bone/30 bg-ink/40 backdrop-blur md:hidden">
-            <span className="relative block h-3 w-5">
-              <span className={`absolute left-0 h-px w-5 bg-bone transition-all ${open ? "top-1.5 rotate-45" : "top-0"}`} />
-              <span className={`absolute left-0 h-px w-5 bg-bone transition-all ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
+      <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[80] h-[2px] w-full origin-left bg-clay" />
+      <motion.header animate={{ y: hidden && !open ? "-110%" : 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed inset-x-0 top-0 z-[75] flex items-center justify-between px-5 py-5 text-bone mix-blend-difference md:px-10">
+        <a href="#start" onClick={() => setOpen(false)} className="display text-3xl italic md:text-4xl">{business.name}</a>
+        <div className="hidden md:block mix-blend-normal"><StatusChip /></div>
+        <div className="flex items-center gap-3">
+          <a href={call} className="label hidden items-center gap-2 rounded-full border border-bone/60 px-5 py-3 transition hover:bg-bone hover:text-ink md:flex"><Phone size={13} /> Anrufen</a>
+          <button onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="menu-overlay" className="label group flex items-center gap-3 rounded-full bg-bone py-2 pl-5 pr-2 text-ink">
+            <span>{open ? "Schließen" : "Menü"}</span>
+            <span className="relative grid h-9 w-9 place-items-center rounded-full bg-ink">
+              <span className={`absolute h-px w-4 bg-bone transition-all duration-300 ${open ? "rotate-45" : "-translate-y-[3px] group-hover:-translate-y-[4px]"}`} />
+              <span className={`absolute h-px w-4 bg-bone transition-all duration-300 ${open ? "-rotate-45" : "translate-y-[3px] group-hover:translate-y-[4px]"}`} />
             </span>
           </button>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }} className="fixed inset-0 z-[65] flex flex-col justify-between bg-ink px-6 pb-8 pt-28 text-bone md:hidden">
-            <ul>
-              {links.map((l, i) => (
-                <li key={l.id} className="overflow-hidden border-b border-bone/10">
-                  <motion.a href={`#${l.id}`} onClick={() => setOpen(false)} initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3 + i * 0.06, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="display flex items-baseline justify-between py-3 text-5xl"><span>{l.label}</span><span className="label text-bone/40">0{i + 1}</span></motion.a>
-                </li>
-              ))}
-            </ul>
-            <div>
-              <p className="label text-bone/60">{business.address.street}, {business.address.city}</p>
-              <a href={call} className="label mt-4 flex items-center justify-center gap-2 rounded-full bg-clay py-4"><Phone size={14} /> Anrufen</a>
+          <motion.div id="menu-overlay" role="dialog" aria-label="Navigation" initial={{ clipPath: "circle(0% at calc(100% - 3.5rem) 2.8rem)" }} animate={{ clipPath: "circle(150% at calc(100% - 3.5rem) 2.8rem)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 3.5rem) 2.8rem)" }} transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[70] grid bg-ink text-bone md:grid-cols-[1.2fr_1fr]">
+            <div className="flex flex-col justify-between px-6 pb-8 pt-28 md:px-14">
+              <ul onMouseLeave={() => setHover(0)}>
+                {links.map((l, i) => (
+                  <li key={l.id} className="overflow-hidden">
+                    <motion.a href={`#${l.id}`} onClick={() => setOpen(false)} onMouseEnter={() => setHover(i)} onFocus={() => setHover(i)}
+                      initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.35 + i * 0.06, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className={`display flex items-baseline gap-5 py-1 text-6xl transition-all duration-300 md:text-8xl ${hover === i ? "translate-x-3 text-bone" : "text-bone/35"}`}>
+                      <span className="label text-clay">0{i + 1}</span>{l.label}
+                    </motion.a>
+                  </li>))}
+              </ul>
+              <div className="flex flex-wrap items-end justify-between gap-6">
+                <address className="label not-italic leading-loose text-bone/60">{business.address.street}<br />{business.address.zip} {business.address.city}</address>
+                <a href={call} className="label inline-flex items-center gap-2 rounded-full bg-clay px-7 py-4">Anrufen <ArrowUpRight size={14} /></a>
+              </div>
+            </div>
+            <div className="relative hidden md:block">
+              <AnimatePresence mode="sync">
+                <motion.div key={hover} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }} className="absolute inset-0">
+                  <Image src={links[hover].img} alt="" fill sizes="40vw" className="object-cover" />
+                </motion.div>
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-r from-ink via-transparent to-transparent" />
             </div>
           </motion.div>
         )}
