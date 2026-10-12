@@ -27,7 +27,7 @@ export default function Evening() {
               <motion.div key={i} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
                 <span className="display text-8xl text-gold md:text-9xl">{acts[i].n}</span>
                 <h2 className="display text-6xl lg:text-8xl">{acts[i].t}</h2>
-                <p className="mt-6 max-w-md text-lg text-bone/70">{acts[i].d}</p>
+                <p className="mt-6 max-w-md text-bone/80">{acts[i].d}</p>
               </motion.div>
             </AnimatePresence>
           </div>

@@ -18,8 +18,8 @@ export default function Gallery() {
         <div className="px-5 md:px-10">
           <p className="label text-gold">— Galerie</p>
           <h2 className="display mt-3 text-5xl md:text-8xl">Momente <em>am Tisch</em></h2>
-          <p className="mt-4 max-w-xl text-bone/70">Ein Blick auf das, was uns ausmacht: Essen, das gemeinsam geteilt wird, Gläser, die aneinanderstoßen, und Abende, die länger dauern als geplant.</p>
-          <p className="label mt-3 text-bone/50">Platzhalter-Fotos · bitte ersetzen</p>
+          <p className="mt-4 max-w-xl text-bone/80">Ein Blick auf das, was uns ausmacht: Essen, das gemeinsam geteilt wird, Gläser, die aneinanderstoßen, und Abende, die länger dauern als geplant.</p>
+          <p className="label mt-3 text-bone/65">Platzhalter-Fotos · bitte ersetzen</p>
         </div>
         <motion.div style={{ x }} className="mt-10 flex w-max gap-5 px-5 md:px-10">
           {shots.map((s, i) => (

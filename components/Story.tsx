@@ -40,7 +40,7 @@ export default function Story() {
               className="border-b border-bone/20 py-10 md:border-b-0 md:border-r md:px-8 md:last:border-r-0 md:first:pl-0">
               <span className="label text-gold">{p.n}</span>
               <h3 className="display mt-6 text-5xl md:text-6xl">{p.t}</h3>
-              <p className="mt-4 max-w-xs text-bone/60">{p.d}</p>
+              <p className="mt-4 max-w-xs text-bone/75">{p.d}</p>
             </motion.div>))}
         </div>
       </section>

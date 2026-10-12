@@ -17,7 +17,7 @@ function Item({ c, i, p }: { c: (typeof cards)[number]; i: number; p: MotionValu
       <motion.article style={{ scale }} className="relative grid h-[70vh] w-full max-w-6xl origin-top overflow-hidden rounded-3xl bg-ink text-bone shadow-2xl md:grid-cols-2">
         <div className="flex flex-col justify-between p-8 md:p-14">
           <span className="label text-gold">{c.n} / 0{cards.length} · Beispiel</span>
-          <div><h3 className="display text-7xl md:text-9xl">{c.t}</h3><p className="display mt-4 text-3xl italic text-bone/70">{c.d}</p></div>
+          <div><h3 className="display text-7xl md:text-9xl">{c.t}</h3><p className="display mt-4 text-3xl italic text-bone/80">{c.d}</p></div>
         </div>
         <div className="relative min-h-40"><Image src={c.img} alt={c.t} fill sizes="50vw" className="object-cover" /></div>
       </motion.article>
@@ -30,7 +30,7 @@ export default function CardStack() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   return (
     <section ref={ref} className="bg-paper py-20">
-      <div className="px-5 pb-10 md:px-10"><p className="label text-clay">— Klassiker (Beispiele)</p><p className="mt-4 max-w-2xl text-lg text-ink/70">Drei Dinge, die zu einem italienischen Abend gehören: Pizza aus dem Ofen, Pasta, die satt und glücklich macht, und ein süßer Abschluss. Die Karten zeigen Beispiele; die echten Gerichte stehen in der Speisekarte.</p></div>
+      <div className="px-5 pb-10 md:px-10"><p className="label text-clay">— Klassiker (Beispiele)</p><p className="mt-4 max-w-2xl text-ink/80">Drei Dinge, die zu einem italienischen Abend gehören: Pizza aus dem Ofen, Pasta, die satt und glücklich macht, und ein süßer Abschluss. Die Karten zeigen Beispiele; die echten Gerichte stehen in der Speisekarte.</p></div>
       {cards.map((c, i) => <Item key={c.n} c={c} i={i} p={scrollYProgress} />)}
     </section>
   );

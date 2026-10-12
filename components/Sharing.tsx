@@ -15,7 +15,8 @@ export default function Sharing() {
         <div>
           <p className="label mb-6 text-clay">— Für Freunde</p>
           <Headline className="text-6xl md:text-9xl" lines={["Eine Mitte,", <em key="a" className="text-clay">viele Hände.</em>]} />
-          <Reveal delay={0.2}><p className="mt-8 max-w-md text-lg text-ink/70">Antipasti-Platten und Pizza zum Teilen: Hier wird nicht abgezählt, sondern weitergereicht. Beispieltext – die echte Auswahl bitte ergänzen.</p>
+          <Reveal delay={0.2}><p className="mt-8 max-w-md text-ink/80">Antipasti-Platten und Pizza zum Teilen: Hier wird nicht abgezählt, sondern weitergereicht. Beispieltext – die echte Auswahl bitte ergänzen.</p>
+            <p className="mt-5 max-w-md text-ink/80">Wer teilt, probiert mehr: ein Stück Pizza hier, ein Löffel Antipasti dort. Fahr mit der Maus über die Nummern auf dem Bild oder tippe sie an, um zu sehen, was alles auf den Tisch kommen kann.</p>
             <p className="display mt-8 min-h-12 text-4xl italic" aria-live="polite">{spots[h].n}</p></Reveal>
         </div>
         <Reveal>

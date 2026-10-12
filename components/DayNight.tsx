@@ -31,7 +31,7 @@ export default function DayNight() {
           <motion.div key={m} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
             <h2 className="display mt-10 text-[clamp(5rem,16vw,15rem)]">{c.title}</h2>
             <p className="display mt-4 max-w-xl text-3xl italic text-bone/90">{c.text}</p>
-            <p className="mt-6 max-w-lg text-bone/70">{m === "mittag" ? "Tagsüber ist es hell, entspannt und unkompliziert – ideal für eine Pause mitten im Tag. Die genauen Zeiten findest du unter „Besuch“." : "Am Abend wird das Licht weicher und der Tisch voller. Zeit, Platten zu teilen, anzustoßen und lange sitzen zu bleiben. Die genauen Zeiten findest du unter „Besuch“."}</p>
+            <p className="mt-6 max-w-lg text-bone/80">{m === "mittag" ? "Tagsüber ist es hell, entspannt und unkompliziert – ideal für eine Pause mitten im Tag. Die genauen Zeiten findest du unter „Besuch“." : "Am Abend wird das Licht weicher und der Tisch voller. Zeit, Platten zu teilen, anzustoßen und lange sitzen zu bleiben. Die genauen Zeiten findest du unter „Besuch“."}</p>
           </motion.div>
         </AnimatePresence>
       </div>

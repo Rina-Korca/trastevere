@@ -19,8 +19,10 @@ export default function PhotoStack() {
         <div>
           <p className="label mb-6 text-clay">— Eindrücke</p>
           <Headline className="text-6xl md:text-9xl" lines={["Zieh", <em key="a" className="text-clay">mich weg.</em>]} />
-          <p className="mt-8 max-w-md text-lg text-ink/70">Ein paar Eindrücke zum Durchblättern: Zieh die Karten zur Seite, wische oder klicke dich durch Tisch, Teller und Gläser.</p>
-          <p className="label mt-6 text-ink/50">Platzhalter-Fotos · ziehen, wischen oder klicken</p>
+          <p className="mt-8 max-w-md text-ink/80">Ein paar Eindrücke zum Durchblättern: Zieh die Karten zur Seite, wische oder klicke dich durch Tisch, Teller und Gläser.</p>
+          <p className="mt-5 max-w-lg text-ink/80">Gutes Essen ist mehr als der Teller: Es sind die Menschen am Tisch, das gedämpfte Licht und der Moment, in dem alle gleichzeitig zugreifen. Genau diese Stimmung möchten wir dir zeigen.</p>
+          <ul className="mt-8 grid max-w-lg grid-cols-3 gap-4 border-t border-ink/20 pt-6">{["Am Tisch", "Auf dem Teller", "Im Glas"].map((t, i) => <li key={t}><span className="label text-clay">0{i + 1}</span><p className="display mt-2 !text-2xl md:!text-3xl">{t}</p></li>)}</ul>
+          <p className="label mt-6 text-ink/65">Platzhalter-Fotos · ziehen, wischen oder klicken</p>
           <button onClick={next} className="label mt-6 inline-flex items-center gap-2 rounded-full border border-ink px-6 py-3 transition hover:bg-ink hover:text-bone">Nächstes Foto <ArrowRight size={14} /></button>
         </div>
         <div className="relative mx-auto h-[28rem] w-72 md:h-[34rem] md:w-96" aria-roledescription="Foto-Stapel" aria-live="polite">

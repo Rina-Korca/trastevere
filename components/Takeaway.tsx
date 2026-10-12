@@ -21,7 +21,7 @@ export default function Takeaway() {
         <p className="label mb-6 text-gold">— Zum Mitnehmen</p>
         <Headline className="text-5xl md:text-8xl" lines={["Gern auch", <em key="a" className="text-gold">to go.</em>]} />
         <FlagLine className="mt-8 w-20" />
-        <p className="mt-8 max-w-xl text-lg leading-relaxed text-bone/80">
+        <p className="mt-8 max-w-xl leading-relaxed text-bone/80">
           Du hast keine Zeit zu bleiben? Kein Problem: einfach anrufen unter <span className="whitespace-nowrap font-medium text-bone">{business.phone.display}</span> – ohne Warenkorb, ohne Formular, nur ein kurzes Gespräch.
         </p>
         <ol className="mt-12 grid max-w-4xl gap-0 border-t border-bone/20 md:grid-cols-3">
@@ -29,7 +29,7 @@ export default function Takeaway() {
             <li key={s.n} className="border-b border-bone/20 py-6 md:border-b-0 md:border-r md:px-6 md:last:border-r-0 md:first:pl-0">
               <span className="label text-gold">{s.n}</span>
               <p className="display mt-3 text-3xl">{s.t}</p>
-              <p className="mt-2 text-bone/65">{s.d}</p>
+              <p className="mt-2 text-bone/75">{s.d}</p>
             </li>))}
         </ol>
         <div className="mt-10">

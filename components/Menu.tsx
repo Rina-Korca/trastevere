@@ -23,7 +23,7 @@ export default function Menu() {
       <div className="mx-auto max-w-7xl">
         <p className="label mb-6 text-clay">— Speisekarte</p>
         <Headline className="text-6xl md:text-9xl" lines={["Zum Teilen,", <em key="a" className="text-clay">zum Genießen.</em>]} />
-        <p className="mt-8 max-w-2xl text-lg text-ink/70">Italienische Klassiker, mit Liebe zubereitet: von knusprigen Antipasti über Pizza und Pasta bis zum süßen Abschluss. Stöbere durch die Kategorien, suche gezielt oder filtere vegetarische Gerichte. Die Gerichte unten sind Beispiele und werden durch die echte Karte ersetzt.</p>
+        <p className="mt-8 max-w-2xl text-ink/80">Italienische Klassiker, mit Liebe zubereitet: von knusprigen Antipasti über Pizza und Pasta bis zum süßen Abschluss. Stöbere durch die Kategorien, suche gezielt oder filtere vegetarische Gerichte. Die Gerichte unten sind Beispiele und werden durch die echte Karte ersetzt.</p>
         <p className="label mt-6 inline-block rounded-full border border-clay/50 px-4 py-2 text-clay">Beispiel-Gerichte · bitte durch die echte Karte ersetzen</p>
 
         <div className="mt-10 grid gap-10 md:grid-cols-12">
@@ -33,7 +33,7 @@ export default function Menu() {
                 {cats.map(c => (
                   <li key={c} className="shrink-0">
                     <button role="tab" aria-selected={c === cat} onClick={() => setCat(c)}
-                      className={`display flex min-h-11 w-full items-center gap-3 px-1 py-1 text-left text-3xl transition md:text-5xl ${c === cat ? "text-ink" : "text-ink/30 hover:text-ink/70"}`}>
+                      className={`display flex min-h-11 w-full items-center gap-3 px-1 py-1 text-left text-3xl transition md:text-5xl ${c === cat ? "text-ink" : "text-ink/30 hover:text-ink/80"}`}>
                       {c === cat && <motion.span layoutId="dot" className="h-2 w-2 rounded-full bg-clay" />}{c}
                     </button>
                   </li>))}
@@ -54,13 +54,13 @@ export default function Menu() {
                     <span className="display min-w-0 text-3xl transition group-hover:translate-x-2 group-hover:italic md:text-6xl">{d.name}</span>
                     {d.veg && <span className="label rounded-full bg-moss px-2 py-0.5 text-bone">V</span>}
                     <span className="mb-2 flex-1 border-b border-dotted border-ink/30" />
-                    <span className="label shrink-0 text-ink/50">€ —</span>
+                    <span className="label shrink-0 text-ink/65">€ —</span>
                   </button>
                   <AnimatePresence>{openRow === d.name && (
-                    <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pb-6 pl-0 text-lg sm:pl-12 text-ink/70">{d.desc}</motion.p>)}</AnimatePresence>
+                    <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pb-6 pl-0 text-lg sm:pl-12 text-ink/80">{d.desc}</motion.p>)}</AnimatePresence>
                 </motion.li>))}
             </AnimatePresence>
-            {!items.length && <li className="py-10 text-ink/50">Nichts gefunden.</li>}
+            {!items.length && <li className="py-10 text-ink/65">Nichts gefunden.</li>}
           </ul>
         </div>
       </div>

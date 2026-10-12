@@ -29,7 +29,7 @@ export default function FAQ() {
               </button>
               <AnimatePresence initial={false}>{o === i && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4 }} className="overflow-hidden">
-                  <p className="pb-6 text-lg text-ink/70">{a}</p></motion.div>)}</AnimatePresence>
+                  <p className="pb-6 text-ink/80">{a}</p></motion.div>)}</AnimatePresence>
             </div>))}
         </div>
       </div>

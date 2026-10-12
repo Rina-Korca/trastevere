@@ -11,7 +11,7 @@ export default function Services() {
           <p className="label mb-6 text-gold">— Bei uns</p>
           <Headline className="text-5xl lg:text-7xl" lines={["Alles, was", <em key="a" className="text-gold">dazugehört.</em>]} />
           <FlagLine className="mt-8 w-20" />
-          <p className="mt-8 max-w-md text-lg leading-relaxed text-bone/75">Ob zu zweit, mit der ganzen Runde oder spontan nach Feierabend: gemütliche Atmosphäre, italienische Küche und Gastgeber, die sich auf deinen Besuch freuen.</p>
+          <p className="mt-8 max-w-md leading-relaxed text-bone/75">Ob zu zweit, mit der ganzen Runde oder spontan nach Feierabend: gemütliche Atmosphäre, italienische Küche und Gastgeber, die sich auf deinen Besuch freuen.</p>
         </div>
         <ol className="md:col-span-7">
           {business.services.map((s, i) => (

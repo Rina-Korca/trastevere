@@ -29,12 +29,12 @@ export default function Hero() {
         </h1>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.4, duration: 1 }}>
           <FlagLine className="mt-8 w-20" />
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-bone/80">Pizza, Pasta und italienische Klassiker in warmer Atmosphäre – zum Teilen, Genießen und Verweilen.</p>
+          <p className="mt-6 max-w-md leading-relaxed text-bone/80">Pizza, Pasta und italienische Klassiker in warmer Atmosphäre – zum Teilen, Genießen und Verweilen.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#reservieren" className="label inline-flex min-h-14 items-center bg-gold px-8 text-ink transition hover:bg-bone">Tisch reservieren</a>
             <a href="#speisekarte" className="label inline-flex min-h-14 items-center border border-bone/50 px-8 transition hover:bg-bone hover:text-ink">Speisekarte ansehen</a>
           </div>
-          <a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="label mt-6 hidden items-center gap-2 text-bone/70 hover:text-bone md:inline-flex"><Phone size={13} /> {business.phone.display}</a>
+          <a href={hasPhone ? `tel:${business.phone.tel}` : "#besuch"} className="label mt-6 hidden items-center gap-2 text-bone/80 hover:text-bone md:inline-flex"><Phone size={13} /> {business.phone.display}</a>
         </motion.div>
       </div>
     </section>

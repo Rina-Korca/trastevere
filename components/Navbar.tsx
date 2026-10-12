@@ -47,7 +47,7 @@ export default function Navbar() {
         <a href="#start" onClick={() => setOpen(false)} aria-label={`${business.name} – Start`}><Logo priority className="h-10 md:h-14" /></a>
         <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
           {links.map(l => (
-            <a key={l.id} href={`#${l.id}`} className={`label relative px-4 py-2 transition-colors ${active === l.id ? "text-bone" : "text-bone/60 hover:text-bone"}`}>
+            <a key={l.id} href={`#${l.id}`} className={`label relative px-4 py-2 transition-colors ${active === l.id ? "text-bone" : "text-bone/75 hover:text-bone"}`}>
               {l.label}
               {active === l.id && <motion.span layoutId="nav-underline" className="absolute inset-x-4 -bottom-0.5 h-px bg-gold" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
             </a>))}
@@ -83,7 +83,7 @@ export default function Navbar() {
               </ul>
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <a href="#reservieren" onClick={() => setOpen(false)} className="label inline-flex min-h-12 w-full items-center justify-center bg-gold px-7 text-ink">Tisch reservieren</a>
-                <address className="label not-italic leading-loose text-bone/60">{business.address.street}<br />{business.address.zip} {business.address.city}</address>
+                <address className="label not-italic leading-loose text-bone/75">{business.address.street}<br />{business.address.zip} {business.address.city}</address>
                 <a href={call} className="label inline-flex min-h-12 items-center gap-2 border border-bone/40 px-7 text-bone">Anrufen <ArrowUpRight size={14} /></a>
               </div>
             </div>
