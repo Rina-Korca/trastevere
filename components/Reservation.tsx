@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, Phone } from "lucide-react";
 import { business, hasPhone } from "@/lib/business-info";
 import FlagLine from "./FlagLine";
@@ -15,7 +15,8 @@ const field = "mt-2 w-full rounded-none border-0 border-b border-bone/30 bg-tran
 
 export default function Reservation() {
   const [st, setSt] = useState<State>({ kind: "idle" });
-  const today = new Date().toISOString().slice(0, 10);
+  const [today, setToday] = useState<string | undefined>(undefined);
+  useEffect(() => { setToday(new Date().toISOString().slice(0, 10)); }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
