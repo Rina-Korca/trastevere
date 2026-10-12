@@ -17,16 +17,14 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("start");
   const [hover, setHover] = useState(0);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   useEffect(() => {
-    let last = window.scrollY;
-    const onS = () => { const y = window.scrollY; setHidden(y > last + 4 && y > 300); if (y < last - 4) setHidden(false); setScrolled(y > 40); last = y; };
+    const onS = () => { const y = window.scrollY; setScrolled(y > 40); };
     onS();
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: "-45% 0px -50% 0px" });
     links.forEach(l => { const el = document.getElementById(l.id); if (el) io.observe(el); });
@@ -44,7 +42,7 @@ export default function Navbar() {
   return (
     <>
       <motion.div style={{ scaleX: progress }} className="fixed left-0 top-0 z-[80] h-[2px] w-full origin-left bg-gold" />
-      <motion.header animate={{ y: hidden && !open ? "-110%" : 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+      <motion.header animate={{ y: 0 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-[75] flex items-center justify-between gap-6 px-5 py-4 text-bone transition-colors duration-500 md:px-10 ${scrolled || open ? "border-b border-bone/10 bg-ink/80 backdrop-blur-xl" : "bg-gradient-to-b from-ink/70 to-transparent"}`}>
         <a href="#start" onClick={() => setOpen(false)} aria-label={`${business.name} – Start`}><Logo priority className="h-10 md:h-14" /></a>
         <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
