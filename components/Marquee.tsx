@@ -13,7 +13,7 @@ export default function Marquee() {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const f = factor.get();
     if (f < 0) dir.current = -1; else if (f > 0) dir.current = 1;
-    let move = dir.current * 0.9 * (d / 16) + f * (d / 16) * 0.6;
+    const move = dir.current * 0.025 * (d / 16) + f * (d / 16) * 0.02;
     let v = base.get() + move;
     if (v <= -50) v += 50; if (v > 0) v -= 50;
     base.set(v);

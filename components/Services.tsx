@@ -5,7 +5,7 @@ import { Headline } from "./Reveal";
 // Editorial list instead of another card grid. Services are PLACEHOLDERS in business-info.ts.
 export default function Services() {
   return (
-    <section className="bg-olive px-5 py-16 text-bone md:px-10 md:py-24">
+    <section className="bg-moss px-5 py-16 text-bone md:px-10 md:py-24">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="label mb-6 text-gold">— Bei uns</p>
