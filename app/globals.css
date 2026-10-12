@@ -54,3 +54,7 @@ section[id] { scroll-margin-top: 5rem; }
 header .label, footer .label, #menu-overlay .label { font-size: .68rem; letter-spacing: .2em; }
 header address, footer address, #menu-overlay address { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
 footer p:not(.display), #menu-overlay p { font-family: var(--font-sans); font-size: inherit; line-height: inherit; }
+
+/* Hero keeps its original typography */
+#start .label { font-size: .68rem; letter-spacing: .2em; }
+#start p:not(.display):not(.label) { font-family: var(--font-sans); font-size: 1.06rem; line-height: 1.625; }
